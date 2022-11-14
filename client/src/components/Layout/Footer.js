@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
-export default function footer(){
+export default function Footer(){
   
   return(
   <Container as="footer" role="contentinfo" bg='gray.300' maxW='100%'>
@@ -101,12 +101,12 @@ export default function footer(){
       align="center"
     >
       <Text fontSize="sm" color="subtle">
-        &copy; {new Date().getFullYear()} Chakra UI Pro, Inc. All rights reserved.
+        &copy; 2022 Gabriel Torres, Inc. All rights reserved.
       </Text>
       <ButtonGroup variant="ghost">
         <IconButton
           as="a"
-          href="#"
+          href="https://www.linkedin.com/in/dario-gabriel-torres-576a3561"
           aria-label="LinkedIn"
           icon={<FaLinkedin fontSize="1.25rem" />}
         />

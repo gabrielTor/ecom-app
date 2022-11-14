@@ -11,9 +11,9 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
-    image: [String],
-    mainCategory: {
-        category: {type: String},
+    image: [URL],
+    category: {
+        mainCategory: {type: String},
         sucbCategory: {type: String}
     },
     stock: {
@@ -24,6 +24,7 @@ const productSchema = new Schema({
         rate: Number,
         amount: Number
     },
+    description: [Text],
     specialOffer: Boolean,
     userId: String
 })

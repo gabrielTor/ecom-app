@@ -1,4 +1,4 @@
-import { Flex, Input, Button } from '@chakra-ui/react'
+import { Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 
@@ -12,19 +12,22 @@ export default function Searchbar() {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        // dispatch(getRecipesByName(recName))
+        // dispatch(action(search))
         setSearch('')
     }
 
     return (
         <Flex w='40%'>
+            <InputGroup>
             <Input
-            type="text"
+            type="search"
             placeholder="Search product, brand or more..."
             value={search}
             onChange={(e) => handleOnSearch(e)}
+            bg='white'
             />
-            <Button type="submit" onClick={(e) => handleSubmit(e)}><SearchIcon/></Button>
+            <InputRightElement children={<Button onClick={handleSubmit}><SearchIcon/></Button>}/>
+            </InputGroup>
         </Flex>
     )
 }

@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <Box h='fit-content' maxW='100%'>
-        <Image src='' alt='' w='100%' h='15rem'/>
+        <Image src='https://http2.mlstatic.com/D_NQ_721257-MLA52405202542_112022-OO.webp' alt='' w='100%' h='100%'/>
         <Box m='3%'>
             <Heading size='md' marginBottom='2%'>Most Recent</Heading>
             <SimpleGrid columns={4} spacing='3%'>

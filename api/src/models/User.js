@@ -18,7 +18,8 @@ const userSchema = new Schema({
       type: Boolean,
       default: true
     },
-    ratedProductId: [String], 
+    ratedProductId: [String],
+    favorites: [String],
     name: {
         first: String,
         last: String
