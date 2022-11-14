@@ -1,17 +1,25 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
   theme,
 } from '@chakra-ui/react';
-import Header from './components/Layout/Header';
+import Layout from './components/Layout/Layout';
+import { Route, Routes } from 'react-router-dom'
+import Home from './components/Home/Home';
+import Details from './components/Details/Details';
+import Profile from './components/auth0/Profile';
 
 function App() {
+
   return (
     <ChakraProvider theme={theme}>
-      <Box>
-        <Header/>
-      </Box>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Home/>} />
+          <Route path='info' element={<Details/>}/>
+          <Route path='profile' element={<Profile/>}/>
+        </Route>
+      </Routes>
     </ChakraProvider>
   );
 }
