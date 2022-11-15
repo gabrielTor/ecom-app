@@ -6,9 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import axios from 'axios'
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001";
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
