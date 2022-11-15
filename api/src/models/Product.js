@@ -11,7 +11,7 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
-    image: [URL],
+    image: [String],
     category: {
         mainCategory: {type: String},
         sucbCategory: {type: String}
@@ -22,9 +22,12 @@ const productSchema = new Schema({
     },
     rating: {
         rate: Number,
-        amount: Number
+        amount: {
+            type: Number,
+            default: 0
+        }
     },
-    description: [Text],
+    description: [String],
     specialOffer: Boolean,
     userId: String
 })
