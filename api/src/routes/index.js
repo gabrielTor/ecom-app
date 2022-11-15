@@ -5,6 +5,7 @@ const userController = require('../controllers/userController')
 
 router.get('/categories', productController.getCategories)
 router.get('/products', productController.getProducts)
+router.post('/postProduct', productController.createProduct)
 
 router.get('/users', userController.getUsers)
 router.post('/registerOrLogin', userController.createUser)

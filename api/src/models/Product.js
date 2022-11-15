@@ -6,6 +6,10 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    used: {
+        type: Boolean,
+        default: false
+    },
     price: Number,
     sold: {
         type: Number,
@@ -14,7 +18,7 @@ const productSchema = new Schema({
     image: [String],
     category: {
         mainCategory: {type: String},
-        sucbCategory: {type: String}
+        subCategory: {type: String}
     },
     stock: {
         type: Number,
@@ -28,7 +32,10 @@ const productSchema = new Schema({
         }
     },
     description: [String],
-    specialOffer: Boolean,
+    specialOffer: {
+        type: Boolean,
+        default: false
+    },
     userId: String
 })
 
