@@ -3,16 +3,19 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
-    // password: {
-    //     type: String,
-    //     required: true
-    // },
+    socialMedia:{
+      facebook: String,
+      instagram: String,
+      twitter: String,
+      LinkedIn: String
+    },
+
     admin: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     },
     active: {
       type: Boolean,
@@ -21,8 +24,12 @@ const userSchema = new Schema({
     ratedProductId: [String],
     favorites: [String],
     name: {
-        first: String,
-        last: String
+      first: String,
+      last: String,
+      dni: Number,
+      phone: Number,
+      address: String,
+      about: String
       }
     }, {
     virtuals: {
