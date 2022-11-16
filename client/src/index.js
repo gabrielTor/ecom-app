@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
-import axios from 'axios'
+import { store } from './Redux/store'
+import { Provider } from 'react-redux';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001";
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -21,10 +21,12 @@ root.render(
       domain={domain}
       clientId={clientId}
       redirectUri={window.location.origin}>
-      <BrowserRouter>
-        <ColorModeScript />
-        <App />
-      </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ColorModeScript />
+            <App />
+          </BrowserRouter>
+      </Provider>
     </Auth0Provider>
   </StrictMode>
 );
