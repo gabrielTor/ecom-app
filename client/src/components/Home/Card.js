@@ -12,31 +12,32 @@ export default function Card(props) {
   }
 
   return (
-    <Box maxW='fit-content'
+    <Box w='15rem' h='20rem'
       borderRadius='1%' bg='white'
-      boxShadow='2xl'
+      boxShadow='xl'
       onMouseOver={()=>setShow(true)}
       onMouseLeave={()=>setShow(false)}
       _hover={{
         color: '#32CD32',
         boxShadow: '20px 20px 50px grey',
         }}>
-        <Flex direction='row-reverse'>
-            <Flex margin='2%' position='absolute'>
+        <Flex direction='row-reverse' justify='center' h='15rem'>
+            <Flex ml='10%' mt='2%' position='absolute'>
                 <Button variant='inner' onClick={favor}><MdFavoriteBorder/></Button>
             </Flex>
             <Image 
                 src={props.image}
-                alt={'cardimage'}/>
+                alt={'cardimage'}
+                maxH='15rem'/>
         </Flex>
         <Divider/>
-        <Text m='10%' p='5%'>${props.price}</Text>
+        <Text m='5%' fontSize='2xl'>${props.price}</Text>
         {
           show ?
         <Flex justify='center' 
           fontSize='120%' 
           fontWeight='bold' 
-          position='absolute' 
+          position='relative'
           bg='white' pl='2%' pr='2%'>
             {props.title}
         </Flex> : null

@@ -14,9 +14,9 @@ export default function Home() {
 
     if(isLoading) (<Text>Loading...</Text>)
 
-    else if(isError) (<Text>{error}</Text>)
+    if(isError) console.log(error)
 
-    else if(isSuccess){
+    if(isSuccess){
 
         return (
         <Box h='fit-content' maxW='100%'>
