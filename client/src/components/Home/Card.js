@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import React from 'react'
 
-export default function Card() {
+export default function Card(props) {
 
   const [show, setShow] = useState(false)
   const favor = () => {
@@ -26,11 +26,11 @@ export default function Card() {
                 <Button variant='inner' onClick={favor}><MdFavoriteBorder/></Button>
             </Flex>
             <Image 
-                src={'https://http2.mlstatic.com/D_Q_NP_966952-MLA44098967288_112020-AB.webp'}
+                src={props.image}
                 alt={'cardimage'}/>
         </Flex>
         <Divider/>
-        <Text m='10%' p='5%'>$1000</Text>
+        <Text m='10%' p='5%'>${props.price}</Text>
         {
           show ?
         <Flex justify='center' 
@@ -38,7 +38,7 @@ export default function Card() {
           fontWeight='bold' 
           position='absolute' 
           bg='white' pl='2%' pr='2%'>
-            Titulo
+            {props.title}
         </Flex> : null
         }
     </Box>
