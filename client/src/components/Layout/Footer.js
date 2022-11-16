@@ -110,7 +110,7 @@ export default function Footer(){
           aria-label="LinkedIn"
           icon={<FaLinkedin fontSize="1.25rem" />}
         />
-        <IconButton as="a" href="#" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+        <IconButton as="a" href="https://github.com/gabrielTor" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
         <IconButton as="a" href="#" aria-label="Twitter" icon={<FaTwitter fontSize="1.25rem" />} />
       </ButtonGroup>
     </Stack>
