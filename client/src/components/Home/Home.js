@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Image, Button, Center, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, Image, Button, Center, Heading, Text } from '@chakra-ui/react'
 import Card from './Card'
 import { useGetProductsQuery } from '../../Redux/apiSlice'
 
@@ -20,20 +20,20 @@ export default function Home() {
 
         return (
         <Box h='fit-content' maxW='100%'>
-            <Image src='https://http2.mlstatic.com/D_NQ_721257-MLA52405202542_112022-OO.webp' alt='' w='100%' h='100%'/>
+            <Image src='https://http2.mlstatic.com/D_NQ_721257-MLA52405202542_112022-OO.webp' alt='coverImg' w='100%' h='100%'/>
             <Box m='3%'>
                 <Heading size='md' marginBottom='2%'>Most Recent</Heading>
-                <SimpleGrid columns={4} spacing='3%'>
+                <Flex wrap='wrap' justify='space-around'>
                     {data.map(prod=>(
                         <Card key={prod._id}
                             title={prod.title}
                             price={prod.price}
                             image={prod.image[0]}/>
                     ))}
-                </SimpleGrid>
+                </Flex>
             </Box>
             <Center>
-                <Button m='2%'>Load More</Button>
+                <Button m='7%'>Load More</Button>
             </Center>
         </Box>
         )

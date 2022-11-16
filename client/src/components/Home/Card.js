@@ -1,5 +1,5 @@
 import {Image, Flex, Text, Box, Divider, Button} from '@chakra-ui/react'
-import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
+import {MdFavoriteBorder, /*MdFavorite*/} from 'react-icons/md'
 import { useState } from 'react'
 
 import React from 'react'
@@ -12,14 +12,14 @@ export default function Card(props) {
   }
 
   return (
-    <Box w='15rem' h='20rem'
+    <Box w='15rem' h='20rem' mt='3%'
       borderRadius='1%' bg='white'
       boxShadow='xl'
       onMouseOver={()=>setShow(true)}
       onMouseLeave={()=>setShow(false)}
       _hover={{
         color: '#32CD32',
-        boxShadow: '20px 20px 50px grey',
+        boxShadow: '0px 20px 50px grey',
         }}>
         <Flex direction='row-reverse' justify='center' h='15rem'>
             <Flex ml='10%' mt='2%' position='absolute'>
@@ -35,7 +35,7 @@ export default function Card(props) {
         {
           show ?
         <Flex justify='center' 
-          fontSize='120%' 
+          fontSize='90%' 
           fontWeight='bold' 
           position='relative'
           bg='white' pl='2%' pr='2%'>
