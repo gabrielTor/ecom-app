@@ -17,6 +17,16 @@ const getProducts = async(req, res) => {
     }
 }
 
+const getProductInfo = async(req, res) => {
+    const { id } = req.params
+    try {
+        const product = await Product.findById(id)
+        res.json(product)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const createProduct = async(req, res) => {
     const {title, price, image, category, stock, description, userId, used} = req.body
     try {
@@ -36,4 +46,4 @@ const createProduct = async(req, res) => {
     }
 }
 
-module.exports = {getCategories, getProducts, createProduct}
+module.exports = {getCategories, getProducts, createProduct, getProductInfo}
