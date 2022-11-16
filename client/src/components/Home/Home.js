@@ -32,6 +32,7 @@ export default function Home() {
                 <Flex wrap='wrap' justify='space-around'>
                     {data?.map(prod=>(
                         <Card key={prod._id}
+                            id={prod._id}
                             title={prod.title}
                             price={prod.price}
                             image={prod.image[0]}/>

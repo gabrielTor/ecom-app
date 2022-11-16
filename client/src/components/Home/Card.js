@@ -1,4 +1,4 @@
-import {Image, Flex, Text, Box, Divider, Button} from '@chakra-ui/react'
+import {Image, Flex, Text, Box, Divider, Button, Link} from '@chakra-ui/react'
 import {MdFavoriteBorder, /*MdFavorite*/} from 'react-icons/md'
 import { useState } from 'react'
 
@@ -25,10 +25,12 @@ export default function Card(props) {
             <Flex ml='10%' mt='2%' position='absolute'>
                 <Button variant='inner' onClick={favor}><MdFavoriteBorder/></Button>
             </Flex>
+            <Link href={`info/${props.id}`}>
             <Image 
                 src={props.image}
                 alt={'cardimage'}
                 maxH='15rem'/>
+            </Link>
         </Flex>
         <Divider/>
         <Text m='5%' fontSize='2xl'>${props.price}</Text>
@@ -39,7 +41,7 @@ export default function Card(props) {
           fontWeight='bold' 
           position='relative'
           bg='white' pl='2%' pr='2%'>
-            {props.title}
+            <Text noOfLines={2}>{props.title}</Text>
         </Flex> : null
         }
     </Box>
