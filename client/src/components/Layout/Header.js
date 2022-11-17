@@ -14,7 +14,7 @@ export default function Header() {
         <Flex w='100%' h='90' align='center' bg='#32CD32'>
             <Spacer/>
             <Link href='/'>
-                <Image src={img} alt='' />
+                <Image src={img} alt='logo' />
             </Link>
             <Spacer/>
 

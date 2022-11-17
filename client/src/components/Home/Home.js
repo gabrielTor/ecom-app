@@ -3,13 +3,15 @@ import Card from './Card'
 import Loading from './Loading'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductsPage } from '../../Redux/apiActions'
+import { getProductsPage } from '../../Redux/productActions'
+import ScrollToTop from './ScrollToTop'
 
 export default function Home() {
 
     const dispatch = useDispatch()
     const data = useSelector(state => state.api.products)
     const count = useSelector(state => state.api.count)
+    const disable = useSelector(state => state.api.disable)
     const [page, setPage] = useState(1)
 
     useEffect(()=>{
@@ -40,9 +42,13 @@ export default function Home() {
                 </Flex>
                 }
             </Box>
+            {
+            disable ? null :        
             <Center>
                 <Button m='7%' isDisabled={count === data?.length} onClick={handleLoad}>Load More</Button>
             </Center>
+            }
+            <ScrollToTop/>
         </Box>
     )
 }

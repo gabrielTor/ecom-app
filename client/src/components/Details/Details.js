@@ -8,7 +8,7 @@ import ImageSlider from './ImageSlider'
 import {MdFavoriteBorder} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductInfo } from '../../Redux/apiActions'
+import { getProductInfo } from '../../Redux/productActions'
 import { useEffect } from 'react'
 import Loading from '../Home/Loading'
 

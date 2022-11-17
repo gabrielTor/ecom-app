@@ -3,11 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 export const apiSlice = createSlice({
     name: 'api',
     initialState: {
+        categories: [],
         products: [],
         count: null,
         productInfo: {},
         user: null,
-        error: null
+        allUsers: null,
+        error: null,
+        success: null,
+        disable: false
     },
     reducers: {
         getProducts: (state, action) => {
@@ -19,9 +23,35 @@ export const apiSlice = createSlice({
         },
         getErrors: (state, action) => {
             state.error = action.payload
+        },
+        getCateg: (state, action) => {
+            state.categories.push(action.payload)
+        },
+        search: (state, action) => {
+            state.products = action.payload
+            state.disable = true
+        },
+        getUsers: (state, action) => {
+            state.allUsers = action.payload
+        },
+        currentUser: (state, action) => {
+            state.user = action.payload
+        },
+        successMessage: (state, action) => {
+            state.success = action.payload
         }
     }
 })
     
-export const {getProducts, getInfo, getErrors} = apiSlice.actions
+export const {
+    getProducts,
+    getInfo,
+    getErrors,
+    getCateg,
+    search,
+    getUsers,
+    currentUser,
+    successMessage
+} = apiSlice.actions
+
 export default apiSlice.reducer

@@ -1,18 +1,20 @@
 import { Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
+import { searchProducts } from '../../Redux/productActions'
+import { useDispatch } from 'react-redux'
 
 export default function Searchbar() {
   
     const [search, setSearch] = useState('')
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const handleOnSearch = (event) => {
         setSearch(event.target.value)
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        // dispatch(action(search))
+        dispatch(searchProducts(search))
         setSearch('')
     }
 

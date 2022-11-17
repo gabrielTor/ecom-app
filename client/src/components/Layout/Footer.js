@@ -7,7 +7,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Footer(){
   
@@ -111,7 +111,7 @@ export default function Footer(){
           icon={<FaLinkedin fontSize="1.25rem" />}
         />
         <IconButton as="a" href="https://github.com/gabrielTor" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
-        <IconButton as="a" href="#" aria-label="Twitter" icon={<FaTwitter fontSize="1.25rem" />} />
+        <IconButton as="a" href="https://www.facebook.com/nmz4ygabriel" aria-label="Facebook" icon={<FaFacebook fontSize="1.25rem" />} />
       </ButtonGroup>
     </Stack>
   </Container>
