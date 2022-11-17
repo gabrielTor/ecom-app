@@ -3,29 +3,27 @@ import {
     UnorderedList, ListItem, Button, 
     NumberInput, NumberInputField, NumberInputStepper,
     NumberDecrementStepper, NumberIncrementStepper,
-    Center, Spinner} from '@chakra-ui/react'
+    } from '@chakra-ui/react'
 import ImageSlider from './ImageSlider'
 import {MdFavoriteBorder} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
-import { useGetProductByIdQuery } from '../../Redux/apiSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductInfo } from '../../Redux/apiActions'
+import { useEffect } from 'react'
+import Loading from '../Home/Loading'
 
 export default function Details() {
 
     const params = useParams()
-    const {data, isFetching} = useGetProductByIdQuery(params.id)
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.api.productInfo)
+    useEffect(()=>{
+        dispatch(getProductInfo(params.id))
+    }, [dispatch, params])
 
   return (
     <>
-    { isFetching ?
-        <Center>
-            <Spinner
-                thickness='4px'
-                speed='0.65s'
-                emptyColor='gray.200'
-                color='green.500'
-                size='xl'
-                />
-        </Center> :
+    {!data.title ? <Loading/> :
         <Flex justify='space-evenly' marginTop='5%'>
             <Box w='40%' h='20%'>
                 <ImageSlider slides={data.image}/>
