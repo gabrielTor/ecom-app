@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
-import { store } from './Redux/store'
+import store from './Redux/store'
 import { Provider } from 'react-redux';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
