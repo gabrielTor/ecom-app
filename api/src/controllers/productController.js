@@ -17,6 +17,28 @@ const getProducts = async(req, res) => {
     }
 }
 
+const searchProducts = async(req, res) => {
+    let { search } = req.query
+    try {
+        if(search){
+            const products = await Product.find()
+            let find = search.toLowerCase()
+            let found = products.filter(prod => prod.title.toLowerCase().includes(find))
+            let found1 = products.filter(prod => prod.category.mainCategory.toLowerCase().includes(find))
+            let found2 = products.filter(prod => prod.category.subCategory.toLowerCase().includes(find))
+            let foundInDescrip = products.filter(prod => {
+                for (let i = 0; i < prod.description.length; i++) {
+                    prod.description[i].toLowerCase().includes(find)
+                }
+            })
+            return res.json((found.length && found) || (found1.length && found1) || (found2.length && found2) || (foundInDescrip.length && foundInDescrip) || {message: 'No results found'})
+            }
+        return res.status(400).json({message: 'Insert a value to search'})
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const getProductInfo = async(req, res) => {
     const { id } = req.params
     try {
@@ -46,4 +68,4 @@ const createProduct = async(req, res) => {
     }
 }
 
-module.exports = {getCategories, getProducts, createProduct, getProductInfo}
+module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts}
