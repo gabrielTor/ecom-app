@@ -1,21 +1,24 @@
 import { Box, Flex, Image, Button, Center, Heading } from '@chakra-ui/react'
 import Card from './Card'
 import Loading from './Loading'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsPage } from '../../Redux/apiActions'
 
 export default function Home() {
 
     const dispatch = useDispatch()
-    const data = useSelector(state => state.api.products.products)
+    const data = useSelector(state => state.api.products)
+    const count = useSelector(state => state.api.count)
+    const [page, setPage] = useState(1)
 
     useEffect(()=>{
         dispatch(getProductsPage())
     }, [dispatch])
 
     const handleLoad = () => {
-        
+        setPage(prev => prev + 1)
+        dispatch(getProductsPage(page))
     }
 
     return (
@@ -25,19 +28,20 @@ export default function Home() {
                 <Heading size='md' marginBottom='2%'>Most Recent</Heading>
                 {!data?.length ? <Loading/> :
                 <Flex wrap='wrap' justify='space-around'>
-                    {data?.map(prod=>(
+                    {
+                    data?.map(prod=>(
                         <Card key={prod._id}
                             id={prod._id}
                             title={prod.title}
                             price={prod.price}
                             image={prod.image[0]}/>
                         ))
-                }
+                    }
                 </Flex>
                 }
             </Box>
             <Center>
-                <Button m='7%' onClick={handleLoad}>Load More</Button>
+                <Button m='7%' isDisabled={count === data?.length} onClick={handleLoad}>Load More</Button>
             </Center>
         </Box>
     )
