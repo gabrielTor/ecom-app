@@ -19,11 +19,11 @@ export default function Details() {
     { isFetching ?
         <Center>
             <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='green.500'
-                    size='xl'
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='green.500'
+                size='xl'
                 />
         </Center> :
         <Flex justify='space-evenly' marginTop='5%'>
@@ -32,7 +32,7 @@ export default function Details() {
             </Box>
             <Box w='40%' h='20%'>
                 <Heading>{data.title}</Heading>
-                
+
                 <Text m='2%'>Rating comming soon</Text>
 
                 <Text fontSize='3xl'>${data.price}</Text>
