@@ -9,9 +9,10 @@ const getProducts = async(req, res) => {
     const { page } = req.query || 0
     const limit = 12
     try {
+        const count = await Product.find().count()
         const products = await Product.find().skip(page*limit).limit(limit)
         if(!products.length) return res.status(400).json({message: 'there are no products'})
-        res.json(products)
+        res.json({products, count})
     } catch (error) {
         console.error(error)
     }
