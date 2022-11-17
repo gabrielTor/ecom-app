@@ -1,9 +1,11 @@
 import { Box, Flex, Image, Button, Center, Heading, Spinner } from '@chakra-ui/react'
 import Card from './Card'
 import { useGetProductsQuery } from '../../Redux/apiSlice'
+import { useState } from 'react'
 
 export default function Home() {
 
+    // const [page, setPage] = useState()
     const {
         data,
         isLoading,
@@ -11,6 +13,10 @@ export default function Home() {
         isError,
         error
     } = useGetProductsQuery()
+
+    const handleLoad = () => {
+        
+    }
 
     if(isError) console.log(error)
 
@@ -40,7 +46,7 @@ export default function Home() {
                 </Flex>
             </Box>
             <Center>
-                <Button m='7%'>Load More</Button>
+                <Button m='7%' onClick={handleLoad}>Load More</Button>
             </Center>
         </Box>
     }
