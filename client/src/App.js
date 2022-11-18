@@ -1,8 +1,4 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  theme,
-} from '@chakra-ui/react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import Layout from './components/Layout/Layout';
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home/Home';

@@ -41,7 +41,7 @@ export default function Details() {
                         _after={{ content: '")"' }}>
                             Availabe Stock: {data.stock}
                     </Text>
-                    <NumberInput defaultValue={1} min={1} max={20} m='3%'>
+                    <NumberInput defaultValue={1} min={1} max={data.stock} m='3%'>
                         <NumberInputField />
                         <NumberInputStepper>
                         <NumberIncrementStepper />

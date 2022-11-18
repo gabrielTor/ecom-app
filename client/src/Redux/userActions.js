@@ -6,7 +6,7 @@ axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001"
 export function loginUser(value){
     return async(dispatch) =>{
         try {
-            const resp = await axios.post('/registerOrLogin')
+            const resp = await axios.post('/registerOrLogin', value)
             await dispatch(currentUser(resp.data))
         } catch (error) {
             getErrors(error)

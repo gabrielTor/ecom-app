@@ -5,18 +5,27 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsPage } from '../../Redux/productActions'
 import ScrollToTop from './ScrollToTop'
+import { useAuth0 } from "@auth0/auth0-react";
+import { loginUser } from '../../Redux/userActions'
 
 export default function Home() {
-
+    
     const dispatch = useDispatch()
     const data = useSelector(state => state.api.products)
     const count = useSelector(state => state.api.count)
     const disable = useSelector(state => state.api.disable)
     const [page, setPage] = useState(1)
+    const {user, isAuthenticated} = useAuth0()
 
     useEffect(()=>{
         dispatch(getProductsPage())
     }, [dispatch])
+
+    useEffect(()=>{
+        if(isAuthenticated && user){
+            dispatch(loginUser({email: user.email}))
+        }
+    }, [dispatch, user, isAuthenticated])
 
     const handleLoad = () => {
         setPage(prev => prev + 1)
