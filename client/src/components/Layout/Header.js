@@ -42,7 +42,9 @@ export default function Header() {
             <Spacer/>
             
             <Spacer/>
-            <Button variant='outline'>+ Sell</Button>
+            <Link href='/sell' style={{textDecoration: 'none'}}>
+                <Button variant='outline'>+ Sell</Button>
+            </Link>
             <Spacer/>
 
             <Button variant='outline'>
