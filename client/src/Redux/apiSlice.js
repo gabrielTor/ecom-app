@@ -28,8 +28,12 @@ export const apiSlice = createSlice({
             state.categories.push(action.payload)
         },
         search: (state, action) => {
-            state.products = action.payload
-            state.disable = true
+            if(action.payload.message){
+                state.error = action.payload.message
+            } else{
+                state.products = action.payload
+                state.disable = true
+            }
         },
         getUsers: (state, action) => {
             state.allUsers = action.payload

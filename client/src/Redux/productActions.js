@@ -42,7 +42,7 @@ export function searchProducts(value){
             const resp = await axios.get(`/search?search=${value}`)
             await dispatch(search(resp.data))
         } catch (error) {
-            getErrors(error)
+            getErrors(error.response.data.message)
         }
     }
 }

@@ -1,13 +1,25 @@
-import { Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Flex, Input, InputGroup, InputRightElement, Button, useToast } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { searchProducts } from '../../Redux/productActions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Searchbar() {
   
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
+    const toast = useToast()
+    const error = useSelector(state => state.api.error)
+
+    useEffect(()=>{
+        if(error){
+            toast({
+                title: error,
+                status: 'error',
+                isClosable: true
+            })
+        }
+    },[error, toast])
 
     const handleOnSearch = (event) => {
         setSearch(event.target.value)
