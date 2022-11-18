@@ -25,7 +25,7 @@ export const apiSlice = createSlice({
             state.error = action.payload
         },
         getCateg: (state, action) => {
-            state.categories.push(action.payload)
+            state.categories = action.payload
         },
         search: (state, action) => {
             if(action.payload.message){

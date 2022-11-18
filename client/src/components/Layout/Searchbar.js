@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { searchProducts } from '../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Searchbar() {
   
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
     const toast = useToast()
     const error = useSelector(state => state.api.error)
 
@@ -26,6 +29,9 @@ export default function Searchbar() {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
+        if(location.pathname !== '/'){
+            navigate('/')
+        }
         dispatch(searchProducts(search))
         setSearch('')
     }
