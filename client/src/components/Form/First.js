@@ -1,14 +1,20 @@
-import { Flex, 
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-Button } from '@chakra-ui/react'
+import {
+    Box,
+    Flex,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Button,
+    Heading,
+    Center,
+  } from '@chakra-ui/react'
 import { getCategories } from '../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-export default function First() {
+export default function First({setElements, setPage}) {
 
     const dispatch = useDispatch()
     const categories = useSelector(state => state.api.categories)
@@ -17,22 +23,37 @@ export default function First() {
         dispatch(getCategories())
     },[dispatch])
 
+    const handleCategory = (main, sub) => {
+        setElements(curr => ({...curr, category: {mainCategory: main, subCategory: sub}}))
+        setPage(curr => ({...curr, first: true}))
+    }
+
   return (
-    <Flex justify='center'>
-        <Flex wrap='wrap' w='15rem'>
-            {
-                categories?.map((c,i)=>(
-                    <Menu key={i}>
-                        <MenuButton as={Button} w='100%'>{c.main}</MenuButton>
-                            <MenuList>
-                                {
-                                    c.subcategories.map((s,idx)=>(<MenuItem key={idx}>{s}</MenuItem>))
-                                }
-                            </MenuList>
-                    </Menu>
-                ))
-            }
-        </Flex>
+    <Box>
+    <Center padding='2%'>
+        <Heading>Choose a Category</Heading>
+    </Center>
+    <Flex justify='center' pb='20%'>
+        <Box border='1px' w='50%' h='fit-content' m='2%'>
+            <Accordion allowToggle>
+                {
+                    categories?.map((c,i)=>(
+                        <AccordionItem key={i}>
+                            <AccordionButton _expanded={{ bg: '#32CD32' }}>
+                                {c.main}
+                                <AccordionIcon/>
+                            </AccordionButton>
+                            <AccordionPanel>
+                                {c.subcategories.map((sub,id)=>(
+                                    <Button key={id} onClick={()=>handleCategory(c.main,sub)}>{sub}</Button>
+                                ))}
+                            </AccordionPanel>
+                        </AccordionItem>
+                    ))
+                }
+            </Accordion>
+        </Box>
     </Flex>
+    </Box>
   )
 }
