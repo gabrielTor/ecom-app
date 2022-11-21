@@ -37,15 +37,15 @@ export default function First({setElements, setPage}) {
         <Box border='1px' w='50%' h='fit-content' m='2%'>
             <Accordion allowToggle>
                 {
-                    categories?.map((c,i)=>(
-                        <AccordionItem key={i}>
+                    categories?.map((c)=>(
+                        <AccordionItem key={c.id}>
                             <AccordionButton _expanded={{ bg: '#32CD32' }}>
                                 {c.main}
                                 <AccordionIcon/>
                             </AccordionButton>
                             <AccordionPanel>
-                                {c.subcategories.map((sub,id)=>(
-                                    <Button key={id} onClick={()=>handleCategory(c.main,sub)}>{sub}</Button>
+                                {c.subcategories.map((sub)=>(
+                                    <Button key={sub} onClick={()=>handleCategory(c.main,sub)}>{sub}</Button>
                                 ))}
                             </AccordionPanel>
                         </AccordionItem>
