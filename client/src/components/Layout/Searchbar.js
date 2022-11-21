@@ -31,6 +31,8 @@ export default function Searchbar() {
         event.preventDefault()
         if(location.pathname !== '/'){
             navigate('/')
+            window.sessionStorage.setItem('searchItem', search)
+            return setSearch('')
         }
         dispatch(searchProducts(search))
         setSearch('')
