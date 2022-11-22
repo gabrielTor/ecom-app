@@ -51,7 +51,7 @@ export default function Home() {
                             id={prod._id}
                             title={prod.title}
                             price={prod.price}
-                            image={prod.image[0]}/>
+                            image={prod.image[0].url}/>
                         ))
                     }
                 </Flex>
