@@ -1,12 +1,25 @@
-import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ChakraProvider, theme, useToast } from '@chakra-ui/react';
 import Layout from './components/Layout/Layout';
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home/Home';
 import Details from './components/Details/Details';
 import Profile from './components/auth0/Profile';
 import Form from './components/Form/Form'
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const toast = useToast()
+  const success = useSelector(state => state.api.success)
+  useEffect(()=>{
+    if(success){
+      toast({
+        title: success.message,
+        status: 'success'
+      })
+    }
+  },[success, toast])
 
   return (
     <ChakraProvider theme={theme}>

@@ -15,7 +15,7 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
-    image: [String],
+    image: [{url: String, cloudId: String}],
     category: {
         mainCategory: {type: String},
         subCategory: {type: String}
@@ -36,7 +36,10 @@ const productSchema = new Schema({
         type: Boolean,
         default: false
     },
-    userId: String
+    userId: {
+        type: String,
+        required: true
+    }
 },{ timestamps: true })
 
 module.exports = mongoose.model('Product', productSchema)
