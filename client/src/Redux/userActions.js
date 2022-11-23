@@ -14,11 +14,10 @@ export function loginUser(value){
     }
 }
 
-export function logout(value){
+export function logOut(value){
     return async(dispatch) =>{
         try {
-            const resp = await axios.put('/logout', value)
-            await dispatch(successMessage(resp.data))
+            await axios.put('/logout', value)
         } catch (error) {
             getErrors(error)
         }

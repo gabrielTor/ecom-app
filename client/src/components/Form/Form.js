@@ -9,11 +9,11 @@ import Third from './Third'
 import { postProduct } from '../../Redux/productActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {useAuth0} from '@auth0/auth0-react'
+import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react'
 import { loginUser } from '../../Redux/userActions'
 import {GoArrowLeft} from 'react-icons/go'
 
-export default function Form() {
+function Form() {
 
   const toast = useToast()
   const {user} = useAuth0()
@@ -101,3 +101,5 @@ export default function Form() {
     </Box>
   )
 }
+
+export default withAuthenticationRequired(Form)

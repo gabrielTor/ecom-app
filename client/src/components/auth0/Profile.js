@@ -1,7 +1,7 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {Box, Image, Heading, List, ListItem} from '@chakra-ui/react'
 
-export default function Profile() {
+function Profile() {
 
     const { user, isAuthenticated } = useAuth0();
 
@@ -17,3 +17,5 @@ export default function Profile() {
         )
     )
 }
+
+export default withAuthenticationRequired(Profile)
