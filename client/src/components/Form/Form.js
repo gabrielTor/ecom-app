@@ -44,9 +44,9 @@ export default function Form() {
   },[user, currentUser, dispatch])
 
   const handleForm = () => {
-    if(elements.image.length > 10){
+    if(elements.image.length > 8){
       return toast({
-        title: 'No more than 10 images',
+        title: 'No more than 8 images',
         status: 'error',
         isClosable: true
       })

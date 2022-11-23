@@ -57,7 +57,7 @@ const categories = [
     {
         id: 12,
         main: 'Services',
-        subcategories: ['Clases-course', 'Reparaments', 'Transport', 'Turism', 'Domestic-service', 'Other']
+        subcategories: ['Clases-course', 'Reparements', 'Transport', 'Turism', 'Domestic-service', 'Other']
     }
 ]
 

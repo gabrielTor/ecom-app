@@ -26,6 +26,11 @@ export default function Third({setElements, images}) {
       upload(file)
     }
   }
+  const handleDelete = (id) => {
+    let filter = images.filter(img => img.cloudId !== id)
+    setElements((curr) => ({...curr, image: [...filter]}))
+    dispatch(deleteCloudImg({id: id}))
+  }
 
   return (
     <Box>
@@ -33,18 +38,20 @@ export default function Third({setElements, images}) {
         <Heading>Upload Images</Heading>
       </Center>
       <Flex justify='center'>
-        <Box w='50%' border='1px' h='40rem' m='2%' borderRadius='0.5%'>
-          <Image src={img} alt='uploadImg' h='40%' w='49.80%' position='absolute'/>
+        <Box w='50%' h='40em'>
+          <Image src={img} alt='uploadImg' h='40%' w='50%' position='absolute'/>
           <Center position='relative' mt='3%'>
             <Text>Click here to upload or drag and drop</Text>
           </Center>
           <Input type='file' w='100%' h='20rem' onChange={handleChange} opacity='0' cursor='pointer' />
-          <Flex wrap='wrap'>
+          <Flex wrap='wrap' mt='10%'>
            {images?.map(img => (
-            <Box key={img.cloudId}>
-              <Image src={img.url} alt='uploaded' h='6rem' border={"2px"} borderColor={"gray.200"} m='2%'/>
-              <CloseButton size='sm' onClick={()=>dispatch(deleteCloudImg({id: img.cloudId}))} color='red'/>
-            </Box>
+            <Flex key={img.cloudId} w='4rem' h='4rem' justify='flex-end' m='1%'>
+              <Image src={img.url} 
+                alt='uploaded' w='100%' h='100%' border="2px"
+                borderColor="gray.200" />
+              <CloseButton size='sm' position='absolute' onClick={()=>handleDelete(img.cloudId)} color='red'/>
+            </Flex>
            ))}
           </Flex>
         </Box>

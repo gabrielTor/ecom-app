@@ -13,6 +13,7 @@ import {
 import { getCategories } from '../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import Loading from '../Home/Loading'
 
 export default function First({setElements, setPage}) {
 
@@ -34,6 +35,7 @@ export default function First({setElements, setPage}) {
         <Heading>Choose a Category</Heading>
     </Center>
     <Flex justify='center' pb='20%'>
+        {!categories.length ? <Loading/> :
         <Box border='1px' w='50%' h='fit-content' m='2%' borderRadius='0.5%'>
             <Accordion allowToggle>
                 {
@@ -52,7 +54,7 @@ export default function First({setElements, setPage}) {
                     ))
                 }
             </Accordion>
-        </Box>
+        </Box>}
     </Flex>
     </Box>
   )
