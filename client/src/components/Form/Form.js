@@ -1,4 +1,7 @@
-import {Box, Button, Center} from '@chakra-ui/react'
+import {Box, Button, Center, useToast, Flex,
+Stack, Text, ButtonGroup, IconButton
+} from '@chakra-ui/react'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import First from './First'
 import Second from './Second'
@@ -8,9 +11,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {useAuth0} from '@auth0/auth0-react'
 import { loginUser } from '../../Redux/userActions'
+import {GoArrowLeft} from 'react-icons/go'
 
 export default function Form() {
 
+  const toast = useToast()
   const {user} = useAuth0()
   const currentUser = useSelector(state => state.api.user)
   const navigate = useNavigate()
@@ -30,8 +35,7 @@ export default function Form() {
   })
   const [page, setPage] = useState({
     first: false,
-    second: false,
-    third: false
+    second: false
   })
 
   useEffect(()=>{
@@ -40,23 +44,60 @@ export default function Form() {
   },[user, currentUser, dispatch])
 
   const handleForm = () => {
+    if(elements.image.length > 10){
+      return toast({
+        title: 'No more than 10 images',
+        status: 'error',
+        isClosable: true
+      })
+    }
     dispatch(postProduct(elements))
     navigate('/')
+  }
+  const handleBack = () => {
+    if(page.second) return setPage(curr => ({...curr, second: false}))
+    else if(page.first) return setPage(curr => ({...curr, first: false}))
+    else navigate('/')
   }
 
   return (
     <Box w='100%' bg='#EDF2F7'>
+      <Flex pl='3%' w='100%' h='90' align='center' bg='#32CD32' position='relative'>
+        <Button variant='ghost' onClick={handleBack}><GoArrowLeft size={35}/>GO BACK</Button>
+      </Flex>
       { !page.first && <First setElements={setElements} setPage={setPage}/> }
       { page.first && !page.second && <Second elements={elements} setElements={setElements} setPage={setPage}/> }
       { page.first && page.second && <Third images={elements.image} setElements={setElements}/> }
       {
         page.first && page.second && elements.image.length && (
           <Center>
-            <Button onClick={handleForm}>
+            <Button w='50%' bg='#32CD32' mb='3%' onClick={handleForm}>
               Publish
             </Button>
           </Center>
       )}
+      <Stack pt="8" pb="12" bg='gray.300'
+      justify="space-evenly"
+      direction={{
+        base: 'column-reverse',
+        md: 'row',
+      }}
+      align="center"
+    >
+      <Text fontSize="sm" color="subtle">
+        &copy; 2022 Gabriel Torres, Inc. All rights reserved.
+      </Text>
+      <ButtonGroup variant="ghost">
+        <IconButton
+          as="a"
+          href="https://www.linkedin.com/in/dario-gabriel-torres-576a3561"
+          aria-label="LinkedIn"
+          icon={<FaLinkedin fontSize="1.25rem" />}
+        />
+        <IconButton as="a" href="https://github.com/gabrielTor" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+        <IconButton as="a" href="https://www.facebook.com/nmz4ygabriel" aria-label="Facebook" icon={<FaFacebook fontSize="1.25rem" />} />
+      </ButtonGroup>
+    </Stack>
     </Box>
   )
 }

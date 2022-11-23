@@ -1,5 +1,6 @@
 const Product = require('../models/Product')
 const categories = require('../models/categories')
+const cloudinary = require('../utils/cloudinary')
 
 const getCategories = (req, res) => {
     res.json(categories)
@@ -69,4 +70,14 @@ const createProduct = async(req, res) => {
     }
 }
 
-module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts}
+const deleteCloudImg = async(req, res) => {
+    const { id } = req.body
+  try {
+    await cloudinary.uploader.destroy(id);
+    res.json({message: `image cloudId ${id} was deleted from cloudinary`})
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts, deleteCloudImg}

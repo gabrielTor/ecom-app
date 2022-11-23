@@ -57,3 +57,13 @@ export function postProduct(value){
         }
     }
 }
+
+export function deleteCloudImg(id){
+    return async(dispatch) =>{
+        try {
+            await axios.post('/cloudinary/delete', id)
+        } catch (error) {
+            getErrors(error)
+        }
+    }
+}

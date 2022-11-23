@@ -48,7 +48,7 @@ export default function Header() {
             <Spacer/>
 
             <Button variant='outline'>
-                <GiShoppingCart/>
+                <GiShoppingCart size={30}/>
             </Button>
             <Spacer/>
 

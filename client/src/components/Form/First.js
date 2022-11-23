@@ -34,12 +34,12 @@ export default function First({setElements, setPage}) {
         <Heading>Choose a Category</Heading>
     </Center>
     <Flex justify='center' pb='20%'>
-        <Box border='1px' w='50%' h='fit-content' m='2%'>
+        <Box border='1px' w='50%' h='fit-content' m='2%' borderRadius='0.5%'>
             <Accordion allowToggle>
                 {
                     categories?.map((c)=>(
                         <AccordionItem key={c.id}>
-                            <AccordionButton _expanded={{ bg: '#32CD32' }}>
+                            <AccordionButton bg='gray.300' _expanded={{ bg: '#32CD32' }}>
                                 {c.main}
                                 <AccordionIcon/>
                             </AccordionButton>

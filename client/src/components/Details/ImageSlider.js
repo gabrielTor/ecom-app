@@ -11,8 +11,8 @@ export default function ImageSlider({ slides }) {
 
   return (
     <Carousel renderThumbs={renderMin} thumbWidth={"13%"} infiniteLoop>
-      {slides.map((slide, i) => {
-        return <Image src={slide} key={i} h={"32rem"} W={"100%"} />;
+      {slides?.map((slide) => {
+        return <Image src={slide.url} key={slide._id} h={"32rem"} w={"100%"} />;
       })}
     </Carousel>
   );
