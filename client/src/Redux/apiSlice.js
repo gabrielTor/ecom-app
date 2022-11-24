@@ -17,6 +17,7 @@ export const apiSlice = createSlice({
         getProducts: (state, action) => {
             state.products = state.products.concat(action.payload.products)
             state.count = action.payload.count
+            state.disable = false
         },
         getInfo: (state, action) => {
             state.productInfo = action.payload

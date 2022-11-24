@@ -8,6 +8,7 @@ import Form from './components/Form/Form'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { resetErrors, resetSuccessM } from './Redux/apiSlice'
+import { getProductsPage } from './Redux/productActions'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
   const toast = useToast()
   const success = useSelector(state => state.api.success)
   const error = useSelector(state => state.api.error)
+  const products = useSelector(state => state.api.products)
 
   useEffect(()=>{
     if(success){
@@ -29,6 +31,9 @@ function App() {
   
   useEffect(()=>{
     if(error){
+      if(error.split(' ')[0] === 'Sorry' && !products.length){
+        dispatch(getProductsPage())
+      }
       toast({
           title: error,
           status: 'error',
@@ -36,7 +41,7 @@ function App() {
       })
       dispatch(resetErrors())
     }
-},[error, toast, dispatch])
+},[error, toast, products, dispatch])
 
   return (
     <ChakraProvider theme={theme}>
