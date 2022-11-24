@@ -8,7 +8,7 @@ router.get('/products', productController.getProducts)
 router.get('/search', productController.searchProducts)
 router.get('/info/:id', productController.getProductInfo)
 router.post('/postProduct', productController.createProduct)
-router.post('/cloudinary/delete', productController.deleteCloudImg)
+router.delete('/cloudinary/delete', productController.deleteCloudImg)
 
 router.get('/users', userController.getUsers)
 router.post('/registerOrLogin', userController.createUser)

@@ -9,7 +9,7 @@ export function loginUser(value){
             const resp = await axios.post('/registerOrLogin', value)
             await dispatch(currentUser(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -19,7 +19,7 @@ export function logOut(value){
         try {
             await axios.put('/logout', value)
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -30,7 +30,7 @@ export function updateUser(value){
             const resp = await axios.put('/updateUser', value)
             await dispatch(successMessage(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -41,7 +41,7 @@ export function addToFavorites(value){
             const resp = await axios.put('/addFavor', value)
             await dispatch(successMessage(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -52,7 +52,7 @@ export function removeFromFavorites(value){
             const resp = await axios.put('/removeFavor', value)
             await dispatch(successMessage(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }

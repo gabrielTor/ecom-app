@@ -5,5 +5,5 @@ export default configureStore({
     reducer: {
        api: api
     },
-    // devTools: true
+    devTools: true
 })

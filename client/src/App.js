@@ -6,20 +6,37 @@ import Details from './components/Details/Details';
 import Profile from './components/auth0/Profile';
 import Form from './components/Form/Form'
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetErrors, resetSuccessM } from './Redux/apiSlice'
 
 function App() {
 
+  const dispatch = useDispatch()
   const toast = useToast()
   const success = useSelector(state => state.api.success)
+  const error = useSelector(state => state.api.error)
+
   useEffect(()=>{
     if(success){
       toast({
         title: success.message,
-        status: 'success'
+        status: 'success',
+        isClosable: true
       })
+      dispatch(resetSuccessM())
     }
-  },[success, toast])
+  },[success, toast, dispatch])
+  
+  useEffect(()=>{
+    if(error){
+      toast({
+          title: error,
+          status: 'error',
+          isClosable: true
+      })
+      dispatch(resetErrors())
+    }
+},[error, toast, dispatch])
 
   return (
     <ChakraProvider theme={theme}>

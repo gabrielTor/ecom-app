@@ -24,6 +24,9 @@ export const apiSlice = createSlice({
         getErrors: (state, action) => {
             state.error = action.payload
         },
+        resetErrors: (state) => {
+            state.error = null
+        },
         getCateg: (state, action) => {
             state.categories = action.payload
         },
@@ -43,6 +46,9 @@ export const apiSlice = createSlice({
         },
         successMessage: (state, action) => {
             state.success = action.payload
+        },
+        resetSuccessM: (state) => {
+            state.success = null
         }
     }
 })
@@ -55,7 +61,9 @@ export const {
     search,
     getUsers,
     currentUser,
-    successMessage
+    successMessage,
+    resetErrors,
+    resetSuccessM
 } = apiSlice.actions
 
 export default apiSlice.reducer

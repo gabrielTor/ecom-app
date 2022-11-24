@@ -9,7 +9,7 @@ export function getProductsPage(page){
             const resp = await axios.get(`/products?page=${page}`)
             await dispatch(getProducts(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -20,7 +20,7 @@ export function getProductInfo(id){
             const resp = await axios.get(`/info/${id}`)
             await dispatch(getInfo(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -31,7 +31,7 @@ export function getCategories(){
             const resp = await axios.get('/categories')
             await dispatch(getCateg(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -42,7 +42,7 @@ export function searchProducts(value){
             const resp = await axios.get(`/search?search=${value}`)
             await dispatch(search(resp.data))
         } catch (error) {
-            getErrors(error.response.data.message)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -53,7 +53,7 @@ export function postProduct(value){
             const resp = await axios.post('/postProduct', value)
             await dispatch(successMessage(resp.data))
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }
@@ -61,9 +61,9 @@ export function postProduct(value){
 export function deleteCloudImg(id){
     return async(dispatch) =>{
         try {
-            await axios.post('/cloudinary/delete', id)
+            await axios.delete('/cloudinary/delete', id)
         } catch (error) {
-            getErrors(error)
+            dispatch(getErrors(error.response.data.message))
         }
     }
 }

@@ -1,4 +1,4 @@
-import {Box, Button, Center, useToast, Flex,
+import {Box, Button, Center, Flex,
 Stack, Text, ButtonGroup, IconButton
 } from '@chakra-ui/react'
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
@@ -12,14 +12,15 @@ import {useNavigate} from 'react-router-dom'
 import {useAuth0, withAuthenticationRequired} from '@auth0/auth0-react'
 import { loginUser } from '../../Redux/userActions'
 import {GoArrowLeft} from 'react-icons/go'
+import { getErrors } from '../../Redux/apiSlice'
 
 function Form() {
 
-  const toast = useToast()
   const {user} = useAuth0()
   const currentUser = useSelector(state => state.api.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [update, setUpdate] = useState(true)
   const [elements, setElements] = useState({
     title: '',
     price: '',
@@ -39,17 +40,17 @@ function Form() {
   })
 
   useEffect(()=>{
-    if(user) dispatch(loginUser({email: user.email}))
-    if(currentUser) setElements(curr => ({...curr, userId: currentUser._id}))
-  },[user, currentUser, dispatch])
+    if(update){
+      if(user) dispatch(loginUser({email: user.email}))
+      if(currentUser) setElements(curr => ({...curr, userId: currentUser._id}))
+      setUpdate(false)
+    }
+    console.log('hello')
+  },[user, currentUser, dispatch, update])
 
   const handleForm = () => {
     if(elements.image.length > 8){
-      return toast({
-        title: 'No more than 8 images',
-        status: 'error',
-        isClosable: true
-      })
+      return dispatch(getErrors('No more than 8 images'))
     }
     dispatch(postProduct(elements))
     navigate('/')
