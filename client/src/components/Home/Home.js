@@ -18,14 +18,6 @@ export default function Home() {
     const {user, isAuthenticated} = useAuth0()
 
     useEffect(()=>{
-        setTimeout(()=>{
-            if(!data.length){
-                dispatch(getProductsPage())
-            }
-        },6000)
-    },[data, dispatch])
-
-    useEffect(()=>{
         let search = window.sessionStorage.getItem('searchItem')
         let category = window.sessionStorage.getItem('category')
         if(search || category){
