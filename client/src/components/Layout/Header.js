@@ -1,11 +1,11 @@
 import { Image, Box, Flex, Spacer, Button, Link, Spinner, Avatar } from '@chakra-ui/react'
-import Searchbar from './Searchbar'
+import Searchbar from './features/Searchbar'
 import { GiShoppingCart } from 'react-icons/gi'
 import Login from '../auth0/features/Login';
 import Logout from '../auth0/features/Logout';
 import { useAuth0 } from "@auth0/auth0-react";
 import img from './assets/PMlogo.png'
-import CategMenu from './CategMenu';
+import CategMenu from './features/CategMenu';
 
 export default function Header() {
 

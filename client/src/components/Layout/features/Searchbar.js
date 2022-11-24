@@ -1,7 +1,7 @@
 import { Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
-import { searchProducts } from '../../Redux/productActions'
+import { searchProducts } from '../../../Redux/productActions'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from "react-router-dom";
 

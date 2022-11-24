@@ -3,7 +3,7 @@ import Card from './Card'
 import Loading from '../../features/Loading'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductsPage, searchProducts } from '../../Redux/productActions'
+import { getCategories, getProductsPage, searchProducts } from '../../Redux/productActions'
 import ScrollToTop from '../../features/ScrollToTop'
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginUser } from '../../Redux/userActions'
@@ -18,10 +18,21 @@ export default function Home() {
     const {user, isAuthenticated} = useAuth0()
 
     useEffect(()=>{
+        setTimeout(()=>{
+            if(!data.length){
+                dispatch(getProductsPage())
+            }
+        },6000)
+    },[data, dispatch])
+
+    useEffect(()=>{
         let search = window.sessionStorage.getItem('searchItem')
-        if(search){
-            dispatch(searchProducts(search))
+        let category = window.sessionStorage.getItem('category')
+        if(search || category){
+            search && dispatch(searchProducts(search))
+            category && dispatch(getCategories(category))
             window.sessionStorage.removeItem('searchItem')
+            window.sessionStorage.removeItem('category')
         } else {
             dispatch(getProductsPage())
         }

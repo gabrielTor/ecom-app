@@ -30,6 +30,10 @@ export const apiSlice = createSlice({
         getCateg: (state, action) => {
             state.categories = action.payload
         },
+        getByCateg: (state, action) => {
+            state.products = action.payload
+            state.disable = true
+        },
         search: (state, action) => {
             if(action.payload.message){
                 state.error = action.payload.message
@@ -63,7 +67,8 @@ export const {
     currentUser,
     successMessage,
     resetErrors,
-    resetSuccessM
+    resetSuccessM,
+    getByCateg
 } = apiSlice.actions
 
 export default apiSlice.reducer
