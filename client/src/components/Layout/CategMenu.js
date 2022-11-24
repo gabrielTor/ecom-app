@@ -25,7 +25,7 @@ export default function CategMenu() {
                         <Heading size='lg'>All Categories</Heading>
                     </Button>
                 </Box>
-                <SimpleGrid columns='4'>
+                <SimpleGrid columns={[1, 2, 3, 4]}>
                     {categories?.map(c => (
                         <Box key={c.id} p='3%'>
                             <Button variant='link' color='black'><Heading size='md'>{c.main}</Heading></Button>
