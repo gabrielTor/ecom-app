@@ -10,10 +10,10 @@ import {
     Heading,
     Center,
   } from '@chakra-ui/react'
-import { getCategories } from '../../Redux/productActions'
+import { getCategories } from '../../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import Loading from '../Home/Loading'
+import Loading from '../../../features/Loading'
 
 export default function First({setElements, setPage}) {
 

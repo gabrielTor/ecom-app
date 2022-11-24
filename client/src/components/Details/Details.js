@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
 import { useEffect } from 'react'
-import Loading from '../Home/Loading'
+import Loading from '../../features/Loading'
 
 export default function Details() {
 

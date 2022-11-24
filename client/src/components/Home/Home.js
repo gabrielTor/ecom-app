@@ -1,10 +1,10 @@
 import { Box, Flex, Image, Button, Center, Heading } from '@chakra-ui/react'
 import Card from './Card'
-import Loading from './Loading'
+import Loading from '../../features/Loading'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsPage, searchProducts } from '../../Redux/productActions'
-import ScrollToTop from './ScrollToTop'
+import ScrollToTop from '../../features/ScrollToTop'
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginUser } from '../../Redux/userActions'
 

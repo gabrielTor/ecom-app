@@ -1,8 +1,8 @@
 import {Box, Input, Heading, Center, Flex, Image, Text, CloseButton} from '@chakra-ui/react'
 import axios from 'axios'
-import img from './assets/upload-files.jpg'
+import img from '../assets/upload-files.jpg'
 import { useDispatch } from 'react-redux'
-import { deleteCloudImg } from '../../Redux/productActions'
+import { deleteCloudImg } from '../../../Redux/productActions'
 
 export default function Third({setElements, images}) {
 
@@ -10,9 +10,9 @@ export default function Third({setElements, images}) {
   const upload = async(file) => {
     const formData = new FormData()
       formData.append('file', file)
-      formData.append('upload_preset', 'ml_default')
+      formData.append('upload_preset', process.env.REACT_APP_PRESET)
       try {
-        const resp = await axios.post("https://api.cloudinary.com/v1_1/lookhome/image/upload", formData)
+        const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_NAME}/image/upload`, formData)
         const img = { url: resp.data.secure_url, cloudId: resp.data.public_id }
         setElements((curr) => ({...curr, image: [...images, img]}))
       } catch (error) {
