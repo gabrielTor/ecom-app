@@ -2,8 +2,18 @@ const Product = require('../models/Product')
 const categories = require('../models/categories')
 const cloudinary = require('../utils/cloudinary')
 
-const getCategories = (req, res) => {
-    res.json(categories)
+const getCategories = async(req, res) => {
+    const {category} = req.query
+    try {
+        if(category){
+            const findAll = await Product.find()
+            const findByCateg = findAll.filter(prod => prod.category.mainCategory === category || prod.category.subCategory === category)
+            if(!findByCateg.length) return res.status(404).json({message: `Sorry no products in the ${category} Category`})
+            res.json(findByCateg)
+        } else res.json(categories)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 const getProducts = async(req, res) => {
