@@ -65,7 +65,7 @@ export function postProduct(value){
 export function deleteCloudImg(id){
     return async(dispatch) =>{
         try {
-            await axios.delete('/cloudinary/delete', id)
+            await axios.post('/cloudinary/delete', id)
         } catch (error) {
             dispatch(getErrors(error.response.data.message))
         }
