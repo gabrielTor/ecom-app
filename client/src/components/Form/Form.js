@@ -42,10 +42,11 @@ function Form() {
   useEffect(()=>{
     if(update){
       if(user) dispatch(loginUser({email: user.email}))
-      if(currentUser) setElements(curr => ({...curr, userId: currentUser._id}))
-      setUpdate(false)
+      if(currentUser){
+        setElements(curr => ({...curr, userId: currentUser._id}))
+        setUpdate(false)
+      }  
     }
-    console.log('hello')
   },[user, currentUser, dispatch, update])
 
   const handleForm = () => {
