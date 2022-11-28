@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../../Redux/userActions';
 
@@ -14,9 +14,9 @@ export default function Logout() {
 
     return (
         isAuthenticated && (
-            <Button onClick={handleLogout}>
+            <Box w='100%' p='4%' _hover={{bg: '#32CD32'}} onClick={handleLogout}>
                 Sign Out
-            </Button>
+            </Box>
         )
     )
 }

@@ -7,7 +7,7 @@ export default function Login() {
 
     return (
         !isAuthenticated && (
-            <Button onClick={() => loginWithRedirect()}>
+            <Button _hover={{bg: '#32CD32'}} onClick={() => loginWithRedirect()}>
                 Sign In
             </Button>
         )

@@ -1,0 +1,7 @@
+.btn {
+    width: 100%;
+    padding: 4%;
+}
+.btn:hover {
+    background: #32CD32;
+}

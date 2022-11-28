@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Button, Center, Heading } from '@chakra-ui/react'
+import { Box, Flex, Button, Center, Heading } from '@chakra-ui/react'
 import Card from './Card'
 import Loading from '../../features/Loading'
 import { useEffect, useState } from 'react'
@@ -7,6 +7,7 @@ import { getCategories, getProductsPage, searchProducts } from '../../Redux/prod
 import ScrollToTop from '../../features/ScrollToTop'
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginUser } from '../../Redux/userActions'
+import Slider from '../../features/Slider'
 
 export default function Home() {
     
@@ -43,7 +44,7 @@ export default function Home() {
 
     return (
         <Box h='fit-content' maxW='100%'>
-            <Image src='https://http2.mlstatic.com/D_NQ_721257-MLA52405202542_112022-OO.webp' alt='coverImg' w='100%' h='100%'/>
+            <Slider/>
             <Box m='3%'>
                 <Heading size='md' marginBottom='2%'>Most Recent</Heading>
                 {!data?.length ? <Loading/> :

@@ -1,0 +1,44 @@
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverArrow,
+    Avatar,
+    IconButton,
+    Box,
+    Spinner
+  } from '@chakra-ui/react'
+import { useAuth0 } from "@auth0/auth0-react";
+import Login from '../../auth0/features/Login';
+import Logout from '../../auth0/features/Logout';
+import style from '../styles/profileMenu.module.css'
+
+export default function ProfileMenu() {
+
+  const { isLoading, isAuthenticated, user } = useAuth0();
+
+  return (
+    <Popover>
+        <PopoverTrigger>
+        {
+          isLoading ? <Spinner/> :
+          <IconButton size='xl' borderRadius='50%' icon={<Avatar name={user?.name} src={user?.picture} />} />
+        }
+        </PopoverTrigger>
+        <PopoverContent w='7em' border='none'>
+            <PopoverArrow/>
+            {
+              !isAuthenticated ?
+              <Login/> :
+              <>
+              <Box className={style.btn}>Profile</Box>
+              <Box className={style.btn}>Orders</Box>
+              <Box className={style.btn}>My Products</Box>
+              <Box className={style.btn}>Favorites</Box>
+              <Logout/>
+            </>
+            }
+        </PopoverContent>
+    </Popover>
+  )
+}
