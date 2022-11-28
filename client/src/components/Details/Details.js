@@ -24,11 +24,11 @@ export default function Details() {
   return (
     <>
     {!data.title ? <Loading/> :
-        <Flex justify='space-evenly' marginTop='5%'>
-            <Box w='40%' h='20%'>
+        <Flex justify='space-evenly' marginTop='5%' wrap='wrap'>
+            <Box w={['fit-content', '40%']} h='20%'>
                 <ImageSlider slides={data.image}/>
             </Box>
-            <Box w='40%' h='20%'>
+            <Box w={['fit-content', '40%']} h='20%'>
                 <Heading>{data.title}</Heading>
 
                 <Text m='2%'>Rating comming soon</Text>
@@ -53,7 +53,7 @@ export default function Details() {
                 </Flex>
 
                 <Heading as='h3' size='lg' m='2%'>Information about the product:</Heading>
-                <UnorderedList>
+                <UnorderedList pb='5%'>
                     {data.description?.map((des, i) => (
                         <ListItem key={i}>{des}</ListItem>
                     ))}
