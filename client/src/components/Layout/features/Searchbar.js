@@ -27,7 +27,7 @@ export default function Searchbar() {
     }
 
     return (
-        <Flex w='40%'>
+        <Flex w={['65%', '60%', '40%']}>
             <InputGroup>
             <Input
             type="search"
