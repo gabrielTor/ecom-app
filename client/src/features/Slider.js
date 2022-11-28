@@ -42,7 +42,7 @@ export default function Slider() {
               alt='sliderImages'/>
         </Box>))}
 
-      <Flex w='100%' justify='center' top={['1.3%', '3%' ,'5%', '8%']} position='absolute'>
+      <Flex w='100%' justify='center' top={['3.5%', '7.5%', '10.5%', '15.5%']} position='absolute'>
         {imgArr.map(({id}) => (
           <span key={id} onClick={()=>setSlide(id)} className={id === slide ? `${style.dot} ${style.active}` : style.dot}></span>
         ))}
