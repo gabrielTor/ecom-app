@@ -27,7 +27,7 @@ export default function Slider() {
   useEffect(()=>{
     const interval = setInterval(() => {
       nextBtn()
-    }, 3000);
+    }, 3000)
     return () => clearInterval(interval)
   })
 
@@ -41,15 +41,15 @@ export default function Slider() {
               src={img}
               alt='sliderImages'/>
         </Box>))}
-
-      <Flex w='100%' justify='center' top={['3.5%', '7.5%', '10.5%', '15.5%']} position='absolute'>
-        {imgArr.map(({id}) => (
-          <span key={id} onClick={()=>setSlide(id)} className={id === slide ? `${style.dot} ${style.active}` : style.dot}></span>
-        ))}
+      <Flex w='100%' justify='center'>
+        <Button onClick={prevBtn}>&#10094;</Button>
+        <Flex justify='center' pt='1%'>
+          {imgArr.map(({id}) => (
+            <span key={id} onClick={()=>setSlide(id)} className={id === slide ? `${style.dot} ${style.active}` : style.dot}></span>
+          ))}
+        </Flex>
+        <Button onClick={nextBtn}>&#10095;</Button>
       </Flex>
-      
-      <Button onClick={prevBtn} top={['1%', '2%', '3%', '4%','5%']} className={style.prev}>&#10094;</Button>
-      <Button onClick={nextBtn} top={['1%', '2%', '3%', '4%','5%']} className={style.next}>&#10095;</Button>
     </Box>
   )
 }

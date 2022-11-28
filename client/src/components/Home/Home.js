@@ -44,9 +44,9 @@ export default function Home() {
 
     return (
         <Box h='fit-content' maxW='100%'>
-            <Slider/>
+            {disable ? null : <Slider/>}
             <Box m='3%'>
-                <Heading size='md' marginBottom='2%'>Most Recent</Heading>
+                {!disable && <Heading size='md' marginBottom='2%'>Most Recent</Heading>}
                 {!data?.length ? <Loading/> :
                 <Flex wrap='wrap' justify='space-around'>
                     {
