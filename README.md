@@ -11,7 +11,7 @@
 
 
 ## General info
-This is an e-commerce web application I´m curruntly working on, with the design inspired by MercadoLibre and OLX pages.
+This is a multi e-commerce web application I´m curruntly working on, with the design inspired by MercadoLibre and OLX pages.
 
 ## Technologies
 Project is created with:
