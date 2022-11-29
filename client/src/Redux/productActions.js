@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getProducts, getInfo, getErrors, getCateg, search, successMessage, getByCateg } from './apiSlice'
+import { getProducts, getInfo, getErrors, getCateg, 
+    search, successMessage, getByCateg, userListings } from './apiSlice'
 
 axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001"
 
@@ -8,6 +9,17 @@ export function getProductsPage(page){
         try {
             const resp = await axios.get(`/products?page=${page}`)
             await dispatch(getProducts(resp.data))
+        } catch (error) {
+            dispatch(getErrors(error.response.data.message))
+        }
+    }
+}
+
+export function getUserProducts(userId){
+    return async(dispatch) =>{
+        try {
+            const resp = await axios.get(`/user/products?userId=${userId}`)
+            await dispatch(userListings(resp.data))
         } catch (error) {
             dispatch(getErrors(error.response.data.message))
         }

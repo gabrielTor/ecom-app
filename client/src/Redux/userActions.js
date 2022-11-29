@@ -45,14 +45,3 @@ export function addToFavorites(value){
         }
     }
 }
-
-export function removeFromFavorites(value){
-    return async(dispatch) =>{
-        try {
-            const resp = await axios.put('/removeFavor', value)
-            await dispatch(successMessage(resp.data))
-        } catch (error) {
-            dispatch(getErrors(error.response.data.message))
-        }
-    }
-}

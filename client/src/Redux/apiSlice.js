@@ -8,6 +8,7 @@ export const apiSlice = createSlice({
         count: null,
         productInfo: {},
         user: null,
+        userListings: null,
         allUsers: null,
         error: null,
         success: null,
@@ -18,6 +19,9 @@ export const apiSlice = createSlice({
             state.products = state.products.concat(action.payload.products)
             state.count = action.payload.count
             state.disable = false
+        },
+        userListings: (state, action) => {
+            state.userListings = action.payload
         },
         getInfo: (state, action) => {
             state.productInfo = action.payload
@@ -60,6 +64,7 @@ export const apiSlice = createSlice({
     
 export const {
     getProducts,
+    userListings,
     getInfo,
     getErrors,
     getCateg,

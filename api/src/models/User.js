@@ -30,15 +30,11 @@ const userSchema = new Schema({
       phone: Number,
       address: String,
       about: String
-      }
-    }, {
-    virtuals: {
-        fullName: {
-          get() {
-            return this.name.first + ' ' + this.name.last;
-          }
-        }
     }
 })
+
+userSchema.virtual('full').get(function() {
+  return this.name.first + ' ' + this.name.last
+});
 
 module.exports = mongoose.model('User', userSchema)

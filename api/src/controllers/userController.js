@@ -50,24 +50,15 @@ const addToFavorites = async(req, res) => {
     const { product_id, email } = req.body
     try {
         let user = await User.findOne({email})
+        const condition = user.favorites.includes(product_id)
+        condition ?
+        user.favorites = user.favorites.filter(f => f !== product_id) :
         user.favorites = [...user.favorites, product_id]
         await user.save()
-        res.json({message: `product id ${product_id} was added to favorites`})
+        res.json({message: `${!condition ? 'added to' : 'removed from'} favorites`})
     } catch (error) {
         console.error(error)
     }
 }
 
-const takeOutOfFavorites = async(req, res) => {
-    const { product_id, email } = req.body
-    try {
-        let user = await User.findOne({email})
-        user.favorites = user.favorites.filter(f => f !== product_id)
-        await user.save()
-        res.json({message: `product id ${product_id} was taken out of favorites`})
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-module.exports = {getUsers, createUser, logout, updateUser, addToFavorites, takeOutOfFavorites}
+module.exports = {getUsers, createUser, logout, updateUser, addToFavorites}

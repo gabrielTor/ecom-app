@@ -1,18 +1,24 @@
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import {Box, Image, Heading, List, ListItem} from '@chakra-ui/react'
+import {Box} from '@chakra-ui/react'
+import {loginUser} from '../../Redux/userActions'
+import {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 
 function Profile() {
 
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated } = useAuth0()
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(isAuthenticated && user){
+            dispatch(loginUser({email: user.email}))
+        }
+    }, [dispatch, user, isAuthenticated])
 
     return (
         isAuthenticated && (
             <Box>
-                {user?.picture && <Image src={user.picture} alt={user?.name} />}
-                <Heading>{user?.name}</Heading>
-                <List>
-                    {Object.keys(user).map((objKey, i) => <ListItem key={i}>{objKey}: {user[objKey]} </ListItem>)}
-                </List>
+                hello
             </Box>
         )
     )

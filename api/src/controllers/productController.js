@@ -29,6 +29,17 @@ const getProducts = async(req, res) => {
     }
 }
 
+const getUserProducts = async(req, res) => {
+    const {userId} = req.query
+    try {
+        const products = await Product.find({ userId })
+        if(!products) return res.status(404).json({message: 'you haven´t published any listings'})
+        res.json(products)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const searchProducts = async(req, res) => {
     let { search } = req.query
     try {
@@ -90,4 +101,4 @@ const deleteCloudImg = async(req, res) => {
   }
 }
 
-module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts, deleteCloudImg}
+module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts, deleteCloudImg, getUserProducts}

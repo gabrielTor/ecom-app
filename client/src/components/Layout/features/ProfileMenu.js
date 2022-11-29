@@ -6,7 +6,8 @@ import {
     Avatar,
     IconButton,
     Box,
-    Spinner
+    Spinner,
+    Link
   } from '@chakra-ui/react'
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from '../../auth0/features/Login';
@@ -31,7 +32,7 @@ export default function ProfileMenu() {
               !isAuthenticated ?
               <Login/> :
               <>
-              <Box className={style.btn}>Profile</Box>
+              <Box className={style.btn}><Link href='/profile'>Profile</Link></Box>
               <Box className={style.btn}>Orders</Box>
               <Box className={style.btn}>My Products</Box>
               <Box className={style.btn}>Favorites</Box>
