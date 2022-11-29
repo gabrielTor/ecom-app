@@ -1,6 +1,7 @@
 import {
     Drawer,
     DrawerBody,
+    DrawerCloseButton,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
@@ -10,7 +11,6 @@ import {
     Button
 } from '@chakra-ui/react'
 import {GiHamburgerMenu} from 'react-icons/gi'
-import CategMenu from './CategMenu'
 
 
 export default function HamburgerMenu() {
@@ -21,6 +21,7 @@ export default function HamburgerMenu() {
         <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
             <DrawerOverlay />
             <DrawerContent bg='#32CD32'>
+                <DrawerCloseButton />
                 <Link href='/'>
                     <DrawerHeader borderBottomWidth='1px'>Home</DrawerHeader>
                 </Link>
@@ -34,7 +35,6 @@ export default function HamburgerMenu() {
                     <Button w='100%' variant='outline' mb='5%'>
                         Messages
                     </Button>
-                    <CategMenu/>
                 </DrawerBody>
             </DrawerContent>
         </Drawer>

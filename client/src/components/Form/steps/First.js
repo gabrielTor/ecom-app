@@ -36,7 +36,7 @@ export default function First({setElements, setPage}) {
     </Center>
     <Flex justify='center' pb='20%'>
         {!categories.length ? <Loading/> :
-        <Box border='1px' w='50%' h='fit-content' m='2%' borderRadius='0.5%'>
+        <Box border='1px' w={['100%', '75%', '60%', '50%']} h='fit-content' m='2%' borderRadius='0.5%'>
             <Accordion allowToggle>
                 {
                     categories?.map((c)=>(

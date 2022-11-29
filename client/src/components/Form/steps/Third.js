@@ -38,12 +38,12 @@ export default function Third({setElements, images}) {
         <Heading>Upload Images</Heading>
       </Center>
       <Flex justify='center'>
-        <Box w='50%' h='40em'>
-          <Image src={img} alt='uploadImg' h='40%' w='50%' position='absolute'/>
+        <Box w={['100%', '75%', '60%', '50%']} h='40em'>
+          <Image src={img} alt='uploadImg' h='40%' w={['100%', '75%', '60%', '50%']} position='absolute'/>
           <Center position='relative' mt='3%'>
             <Text>Click here to upload or drag and drop</Text>
           </Center>
-          <Input type='file' w='100%' h='20rem' onChange={handleChange} opacity='0' cursor='pointer' />
+          <Input type='file' w='100%' h='20rem' onChange={handleChange} opacity='0' cursor='pointer' accept=".jpg, .jpeg, .png, .webp"/>
           <Flex wrap='wrap' mt='10%'>
            {images?.map(img => (
             <Flex key={img.cloudId} w='4rem' h='4rem' justify='flex-end' m='1%'>

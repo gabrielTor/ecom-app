@@ -4,6 +4,7 @@ import {
   Container,
   Divider,
   IconButton,
+  Show,
   Stack,
   Text,
 } from '@chakra-ui/react'
@@ -13,6 +14,7 @@ export default function Footer(){
   
   return(
   <Container as="footer" role="contentinfo" bg='gray.300' maxW='100%'>
+    <Show breakpoint='(min-width: 450px)'>
     <Stack
       w='100%'
       spacing="5"
@@ -87,6 +89,7 @@ export default function Footer(){
         </Stack>
       </Stack>
     </Stack>
+    </Show>
 
     <Divider />
 

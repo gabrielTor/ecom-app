@@ -61,7 +61,7 @@ export default function Second({elements, setElements, setPage}) {
         <Heading>Fill out required Infomation</Heading>
     </Center>
     <Flex justify='center' pb='20%'>
-        <Box border='1px' w='50%' h='fit-content' m='2%' borderRadius='0.5%' p='2%' bg='gray.300'>
+        <Box border='1px' w={['100%', '75%', '60%', '50%']} h='fit-content' m='2%' borderRadius='0.5%' p='2%' bg='gray.300'>
 
             <FormControl isRequired mb='5%'>
                 <FormLabel>Title:</FormLabel>
