@@ -35,7 +35,7 @@ function Profile() {
     },[userInfo])
 
     return (
-        <HStack>{!userInfo ? null :
+        <HStack  m='7% 0'>{!userInfo ? null :
             <Skeleton isLoaded={loaded} w='100%'>
                 {update ?
                 <EditProfile id={userInfo._id} 
@@ -44,7 +44,7 @@ function Profile() {
                         setUpdate={setUpdate}
                         disable={disabled}/>
                 :
-                <VStack m='4% 0'>
+                <VStack>
                 <Image src={user?.picture} alt={'profilePic'}/>
 
                 {update || <IconButton onClick={()=>setUpdate(true)} icon={<EditIcon/>}/>}
