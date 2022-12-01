@@ -40,7 +40,7 @@ const updateUser = async(req, res) => {
             name,
             socialMedia
         })
-        res.json({message: `user id ${id} updated successful`})
+        res.json({message: 'Personal Info updated'})
     } catch (error) {
         console.error(error)
     }

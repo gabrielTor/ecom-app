@@ -3,7 +3,7 @@ import Layout from './components/Layout/Layout';
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home/Home';
 import Details from './components/Details/Details';
-import Profile from './components/auth0/Profile';
+import Profile from './components/Profile/Profile';
 import Form from './components/Form/Form'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
