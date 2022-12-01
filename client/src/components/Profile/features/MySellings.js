@@ -1,6 +1,7 @@
-import {VStack, Image, Text, Container, Heading, Flex} from '@chakra-ui/react'
+import {VStack, Image, Text, Container, Heading, Flex, Button, Link} from '@chakra-ui/react'
 import {getUserProducts} from '../../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
+import {EditIcon} from '@chakra-ui/icons'
 
 import React, { useEffect } from 'react'
 
@@ -14,17 +15,24 @@ export default function MySellings(props) {
     },[dispatch, props.userId])
 
   return (
-    <VStack>
+    <VStack m='7% 0'>
         {
             !userListings ? null :
             userListings?.map(listing => (
                 <Container key={listing._id} bg='green.100'>
                     <Heading size='md' m='1%' noOfLines={3}>{listing.title}</Heading>
-                    <Flex justify='space-between'>
-                    <Image src={listing.image[0].url} alt='myListings' h='8rem'/>
-                    <Text>Selling at: ${listing.price}</Text>
-                    <Text>Condition: {listing.used ? 'Used' : 'New'}</Text>
-                    {/* <Text>Amount Sold: {listing.sold}</Text> */}
+                    <Flex justify={['space-between', 'space-evenly']}>
+                        <Image src={listing.image[0].url} alt='myListings' h='8rem'/>
+                        <Flex direction='column'>
+                            <Text>Selling at: ${listing.price}</Text>
+                            <Text>Condition: {listing.used ? 'Used' : 'New'}</Text>
+                            <Text>Amount Sold: {listing.sold}</Text>
+                            <Text>Current Stock: {listing.stock}</Text>
+                        </Flex>
+                        <Flex direction='column'>
+                            <Button variant='link'>Edit<EditIcon m='5%'/></Button>
+                            <Link as='Button' fontWeight='bold' href={`info/${listing._id}`}>Preview</Link>
+                        </Flex>
                     </Flex>
                 </Container>
             ))

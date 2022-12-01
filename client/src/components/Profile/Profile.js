@@ -1,5 +1,5 @@
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import {VStack, HStack, IconButton, Image, Text, ButtonGroup, Skeleton} from '@chakra-ui/react'
+import {VStack, Stack, IconButton, Image, Text, ButtonGroup, Skeleton} from '@chakra-ui/react'
 import {EditIcon} from '@chakra-ui/icons'
 import {loginUser} from '../../Redux/userActions'
 import {useEffect, useState} from 'react'
@@ -36,7 +36,7 @@ function Profile() {
     },[userInfo])
 
     return (
-        <HStack>{!userInfo ? null :
+        <Stack direction={['column', 'column', 'row']}>{!userInfo ? null :
             <Skeleton isLoaded={loaded} w='100%'>
                 {update ?
                 <EditProfile id={userInfo._id} 
@@ -68,7 +68,7 @@ function Profile() {
             <Skeleton isLoaded={loaded} w='100%'>
                 <MySellings userId={userInfo?._id}/>
             </Skeleton>
-        </HStack>
+        </Stack>
     )
 }
 
