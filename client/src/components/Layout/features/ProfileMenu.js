@@ -26,7 +26,7 @@ export default function ProfileMenu() {
           <IconButton size='xl' borderRadius='50%' icon={<Avatar name={user?.name} src={user?.picture} />} />
         }
         </PopoverTrigger>
-        <PopoverContent w='7em' border='none'>
+        <PopoverContent w={['6rem', '7em']} border='none'>
             <PopoverArrow/>
             {
               !isAuthenticated ?

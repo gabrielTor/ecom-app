@@ -10,12 +10,12 @@ export default function Header() {
   
     return (
         <Flex w='100%' h='90' align='center' bg='#32CD32' justify='space-around'>
-            <Show breakpoint='(min-width: 810px)'>
+            <Show breakpoint='(min-width: 750px)'>
                 <Link href='/'>
                     <Image src={img} alt='logo' />
                 </Link>
             </Show>
-            <Show breakpoint='(min-width: 750px)'>
+            <Show breakpoint='(min-width: 820px)'>
                 <Box w='fit-content'>
                     <CategMenu/>
                 </Box>
