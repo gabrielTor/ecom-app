@@ -6,6 +6,7 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import EditProfile from "./features/EditProfile"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import MySellings from "./features/MySellings";
 
 function Profile() {
 
@@ -62,7 +63,11 @@ function Profile() {
                     <IconButton as="a" href={userInfo?.socialMedia?.twitter} target='_blank' aria-label="Twitter" icon={<FaTwitter/>} />
                 </ButtonGroup>
                 </VStack>}
+
             </Skeleton>}
+            <Skeleton isLoaded={loaded} w='100%'>
+                <MySellings userId={userInfo?._id}/>
+            </Skeleton>
         </HStack>
     )
 }
