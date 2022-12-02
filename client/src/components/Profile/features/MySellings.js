@@ -17,12 +17,12 @@ export default function MySellings(props) {
   return (
     <VStack m='7% 0'>
         {
-            !userListings ? null :
+            !userListings ? <Text>You have no Listings, go publish!</Text> :
             userListings?.map(listing => (
                 <Container key={listing._id} bg='green.100'>
                     <Heading size='md' m='1%' noOfLines={3}>{listing.title}</Heading>
                     <Flex justify={['space-between', 'space-evenly']}>
-                        <Image src={listing.image[0].url} alt='myListings' h={['5rem', '6rem', '7rem', '8rem']}/>
+                        <Image src={listing.image[0].url} alt='myListings' h={['5rem', '6rem', '7rem', '8rem']} mb='1%'/>
                         <Flex direction='column'>
                             <Text>Selling at: ${listing.price}</Text>
                             <Text>Condition: {listing.used ? 'Used' : 'New'}</Text>

@@ -101,4 +101,27 @@ const deleteCloudImg = async(req, res) => {
   }
 }
 
-module.exports = {getCategories, getProducts, createProduct, getProductInfo, searchProducts, deleteCloudImg, getUserProducts}
+const favoriteProducts = async(req, res) => {
+    const {ids} = req.body
+    try {
+        let arrProducts = []
+        for (let i = 0; i < ids.length; i++) {
+            let product = await Product.findById(ids[i])
+            arrProducts.push(product)
+        }
+        res.json(arrProducts)
+    } catch (error) {
+        console.error
+    }
+}
+
+module.exports = {
+    getCategories,
+    getProducts,
+    createProduct,
+    getProductInfo,
+    searchProducts,
+    deleteCloudImg,
+    getUserProducts,
+    favoriteProducts
+}

@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { getProducts, getInfo, getErrors, getCateg, 
-    search, successMessage, getByCateg, userListings } from './apiSlice'
+    search, successMessage, getByCateg, userListings,
+    setFavorites
+} from './apiSlice'
 
 axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001"
 
@@ -78,6 +80,17 @@ export function deleteCloudImg(id){
     return async(dispatch) =>{
         try {
             await axios.post('/cloudinary/delete', id)
+        } catch (error) {
+            dispatch(getErrors(error.response.data.message))
+        }
+    }
+}
+
+export function getFavorites(ids){
+    return async(dispatch) =>{
+        try {
+            const resp = await axios.post('/favorites', ids)
+            await dispatch(setFavorites(resp.data))
         } catch (error) {
             dispatch(getErrors(error.response.data.message))
         }

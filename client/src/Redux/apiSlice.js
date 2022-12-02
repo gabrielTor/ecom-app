@@ -12,7 +12,8 @@ export const apiSlice = createSlice({
         allUsers: null,
         error: null,
         success: null,
-        disable: false
+        disable: false,
+        favorites: []
     },
     reducers: {
         getProducts: (state, action) => {
@@ -58,6 +59,9 @@ export const apiSlice = createSlice({
         },
         resetSuccessM: (state) => {
             state.success = null
+        },
+        setFavorites: (state, action) => {
+            state.favorites = action.payload
         }
     }
 })
@@ -74,7 +78,8 @@ export const {
     successMessage,
     resetErrors,
     resetSuccessM,
-    getByCateg
+    getByCateg,
+    setFavorites
 } = apiSlice.actions
 
 export default apiSlice.reducer

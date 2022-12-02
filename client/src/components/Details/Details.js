@@ -25,10 +25,10 @@ export default function Details() {
     <>
     {!data.title ? <Loading/> :
         <Flex justify='space-evenly' marginTop='5%' wrap='wrap'>
-            <Box w={['fit-content', '45%']} h='20%' m={['5%', '2%']}>
+            <Box w={['fit-content', '45%', '40%']} h='20%' m={['5%', '2%']}>
                 <ImageSlider slides={data.image}/>
             </Box>
-            <Box w={['fit-content', '45%']} h='20%' m={['5%', '2%']}>
+            <Box w={['fit-content', '45%', '40%']} h='20%' m={['5%', '2%']}>
                 <Heading>{data.title}</Heading>
 
                 <Text m='2%'>Rating comming soon</Text>
