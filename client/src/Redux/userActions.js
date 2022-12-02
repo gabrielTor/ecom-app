@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getErrors, successMessage, currentUser } from './apiSlice'
+import { getErrors, successMessage, currentUser, updateCurrUser } from './apiSlice'
 
 axios.defaults.baseURL = process.env.REACT_APP_GABR || "http://localhost:3001"
 
@@ -29,6 +29,7 @@ export function updateUser(value){
         try {
             const resp = await axios.put('/updateUser', value)
             await dispatch(successMessage(resp.data))
+            await dispatch(updateCurrUser(value))
         } catch (error) {
             dispatch(getErrors(error.response.data.message))
         }

@@ -62,6 +62,9 @@ export const apiSlice = createSlice({
         },
         setFavorites: (state, action) => {
             state.favorites = action.payload
+        },
+        updateCurrUser: (state, action) => {
+            state.user = {...state.user, name: action.payload.name, socialMedia: action.payload.socialMedia}
         }
     }
 })
@@ -79,7 +82,8 @@ export const {
     resetErrors,
     resetSuccessM,
     getByCateg,
-    setFavorites
+    setFavorites,
+    updateCurrUser
 } = apiSlice.actions
 
 export default apiSlice.reducer
