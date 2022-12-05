@@ -11,15 +11,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
 import { useEffect } from 'react'
 import Loading from '../../features/Loading'
+import useLocalStorage from '../../Hooks/useLocalStorage'
 
 export default function Details() {
 
     const params = useParams()
     const dispatch = useDispatch()
+    const [value, setValue] = useLocalStorage('cart')
+
     const data = useSelector(state => state.api.productInfo)
     useEffect(()=>{
         dispatch(getProductInfo(params.id))
     }, [dispatch, params])
+
+    const handleCart = () => {
+        if(value.length){
+            for (let i = 0; i < value.length; i++) {
+                if(value[i].title === data?.title) return
+            }
+        }
+        setValue(prev => [...prev, {title: data?.title, price: data?.price}])
+    }
 
   return (
     <>
@@ -48,7 +60,7 @@ export default function Details() {
                         <NumberDecrementStepper />
                         </NumberInputStepper>
                     </NumberInput>
-                    <Button m='3%' colorScheme='whatsapp' variant='solid'>ADD TO CART</Button>
+                    <Button m='3%' colorScheme='whatsapp' variant='solid' onClick={handleCart}>ADD TO CART</Button>
                     <Button m='3%' colorScheme='whatsapp' variant='outline'><MdFavoriteBorder/>Add to Favorites</Button>
                 </Flex>
 

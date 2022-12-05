@@ -13,7 +13,7 @@ import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 export default function Footer(){
   
   return(
-  <Container as="footer" role="contentinfo" bg='gray.300' maxW='100%'>
+  <Container as="footer" role="contentinfo" bg='gray.300' maxW='100%' mt='10%'>
     <Show breakpoint='(min-width: 450px)'>
     <Stack
       w='100%'

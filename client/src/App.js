@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { resetErrors, resetSuccessM } from './Redux/apiSlice'
 import { getProductsPage } from './Redux/productActions'
+import Cart from './components/Cart/Cart';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
           <Route index element={<Home/>} />
           <Route path='info/:id' element={<Details/>}/>
           <Route path='profile' element={<Profile/>}/>
+          <Route path='shoppingCart' element={<Cart/>}/>
         </Route>
         <Route>
           <Route path='/sell' element={<Form/>}/>
