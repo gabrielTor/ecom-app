@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import Loading from '../../features/Loading'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import { useAuth0 } from '@auth0/auth0-react'
+import { successMessage, getErrors } from '../../Redux/apiSlice'
 
 export default function Details() {
 
@@ -28,13 +29,14 @@ export default function Details() {
     }, [dispatch, params])
 
     const handleCart = () => {
-        if(!user) return
+        if(!user) return dispatch(getErrors('Must login to add to cart'))
         else if(value.length){
             for (let i = 0; i < value.length; i++) {
                 if(value[i].title === data.title) return
             }
         }
-        setValue(prev => [...prev, {title: data.title, price: data.price, amount, user: user.email}])
+        setValue(prev => [...prev, {title: data.title, price: data.price, amount}])
+        dispatch(successMessage({message: 'Added to Cart'}))
     }
 
   return (
