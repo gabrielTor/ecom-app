@@ -1,4 +1,7 @@
-import { Box, Tabs, TabList, TabPanels, Tab, TabPanel, Heading, VStack, Text, Flex, Divider, IconButton } from '@chakra-ui/react'
+import { Box, Tabs, TabList, TabPanels, Tab, TabPanel,
+    Heading, VStack, Text, Flex, Divider,
+    IconButton, Button, Center 
+} from '@chakra-ui/react'
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import {DeleteIcon} from '@chakra-ui/icons'
@@ -17,7 +20,7 @@ function Cart() {
 
   return (
         <VStack w='100%' justify='center'>
-            <Box w={['100%', '95%']} bg={['', 'white']} h={['25em']} 
+            <Box w={['100%', '95%']} bg={['', 'white']} h={value.length > 5 ? 'fit-content' : '25em'} 
                 m='2.5% 2% 5%' borderRadius='md' boxShadow={['', 'base']} textAlign={value.length ? '' : 'center'}>
                 <Tabs>
                     <TabList>
@@ -46,6 +49,7 @@ function Cart() {
                                 <Heading size='lg'>Total:</Heading>
                                 <Heading size='lg'>${totalPrice}</Heading>
                             </Flex>
+                            <Center><Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button></Center>
                             </>:
                             <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
                             }
