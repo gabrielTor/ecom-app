@@ -36,9 +36,6 @@ export default function Details() {
         }
         setValue(prev => [...prev, {title: data.title, price: data.price, amount, user: user.email}])
     }
-    const handleAmount = (event) => {
-        setAmount(event)
-    }
 
   return (
     <>
@@ -60,7 +57,7 @@ export default function Details() {
                         _after={{ content: '")"' }}>
                             Availabe Stock: {data.stock}
                     </Text>
-                    <NumberInput defaultValue={1} min={1} max={data.stock} m='3%' onChange={handleAmount}>
+                    <NumberInput defaultValue={1} min={1} max={data.stock} m='3%' onChange={(event)=>setAmount(event)}>
                         <NumberInputField />
                         <NumberInputStepper>
                         <NumberIncrementStepper />

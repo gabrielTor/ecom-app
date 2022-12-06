@@ -18,7 +18,7 @@ function Cart() {
   return (
         <VStack w='100%' justify='center'>
             <Box w={['100%', '95%']} bg={['', 'white']} h={['25em']} 
-                m='2.5% 2% 5%' borderRadius='md' boxShadow={['', 'base']} textAlign='center'>
+                m='2.5% 2% 5%' borderRadius='md' boxShadow={['', 'base']} textAlign={value.length ? '' : 'center'}>
                 <Tabs>
                     <TabList>
                         <Tab p='1% 3%'>Cart</Tab>
@@ -30,11 +30,13 @@ function Cart() {
                                 value.length ?
                                 <>{
                                 value.map(({title, price, amount})=>(
-                                    <Flex key={title} justify='space-between' w='100%'>
-                                        <Text noOfLines={1} m='0.5%'>{title}</Text>
-                                        <Flex justify='space-between' w={['auto', '20%']}>
+                                    <Flex key={title} w='100%' justify='space-between'>
+                                        <Flex>
                                             <Text fontSize='lg'>{amount}</Text>
-                                            <IconButton onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
+                                            <IconButton m='0 20px' onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
+                                            <Text noOfLines={1} m='0.5%'>{title}</Text>
+                                        </Flex>
+                                        <Flex>
                                             <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
                                         </Flex>
                                     </Flex>

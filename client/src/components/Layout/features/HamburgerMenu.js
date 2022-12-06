@@ -26,15 +26,13 @@ export default function HamburgerMenu() {
                     <DrawerHeader borderBottomWidth='1px'>Home</DrawerHeader>
                 </Link>
                 <DrawerBody bg='gray.100'>
-                    <Button w='100%' variant='outline' mb='5%'>
-                        <Link href='/sell'>Sell something</Link>
-                    </Button>
-                    <Button w='100%' variant='outline' mb='5%'>
-                        Shopping Cart
-                    </Button>
-                    <Button w='100%' variant='outline' mb='5%'>
-                        Messages
-                    </Button>
+                    <Link href='/sell'>
+                        <Button w='100%' variant='outline' mb='5%'>Sell something</Button>
+                    </Link>
+                    <Link href='/shoppingCart'>
+                        <Button w='100%' variant='outline' mb='5%'>Shopping Cart</Button>
+                    </Link>
+                    <Button w='100%' variant='outline' mb='5%'>Messages</Button>
                 </DrawerBody>
             </DrawerContent>
         </Drawer>
