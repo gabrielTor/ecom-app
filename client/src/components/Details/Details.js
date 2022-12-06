@@ -9,15 +9,18 @@ import {MdFavoriteBorder} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Loading from '../../features/Loading'
 import useLocalStorage from '../../Hooks/useLocalStorage'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Details() {
 
     const params = useParams()
     const dispatch = useDispatch()
+    const {user} = useAuth0()
     const [value, setValue] = useLocalStorage('cart')
+    const [amount, setAmount] = useState(1)
 
     const data = useSelector(state => state.api.productInfo)
     useEffect(()=>{
@@ -25,12 +28,16 @@ export default function Details() {
     }, [dispatch, params])
 
     const handleCart = () => {
-        if(value.length){
+        if(!user) return
+        else if(value.length){
             for (let i = 0; i < value.length; i++) {
-                if(value[i].title === data?.title) return
+                if(value[i].title === data.title) return
             }
         }
-        setValue(prev => [...prev, {title: data?.title, price: data?.price}])
+        setValue(prev => [...prev, {title: data.title, price: data.price, amount, user: user.email}])
+    }
+    const handleAmount = (event) => {
+        setAmount(event)
     }
 
   return (
@@ -53,7 +60,7 @@ export default function Details() {
                         _after={{ content: '")"' }}>
                             Availabe Stock: {data.stock}
                     </Text>
-                    <NumberInput defaultValue={1} min={1} max={data.stock} m='3%'>
+                    <NumberInput defaultValue={1} min={1} max={data.stock} m='3%' onChange={handleAmount}>
                         <NumberInputField />
                         <NumberInputStepper>
                         <NumberIncrementStepper />

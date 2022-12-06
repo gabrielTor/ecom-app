@@ -8,8 +8,12 @@ import {DeleteIcon} from '@chakra-ui/icons'
 function Cart() {
 
     const [value, setValue] = useLocalStorage('cart')
-    const priceValues = value.length ? value.map(({price}) => +price) : []
-    const totalPrice = priceValues.length ? priceValues.reduce((total, price) => total + price) : null
+    const priceValues = value.length ? value.map(({price, amount}) => +price * amount) : null
+    const totalPrice = priceValues ? priceValues.reduce((total, price) => total + price) : 0
+
+    const handleDelete = (title) => {
+        setValue(prev => prev.filter(item => item.title !== title))
+    }
 
   return (
         <VStack w='100%' justify='center'>
@@ -25,20 +29,20 @@ function Cart() {
                             {
                                 value.length ?
                                 <>{
-                                value.map(({title, price})=>(
+                                value.map(({title, price, amount})=>(
                                     <Flex key={title} justify='space-between' w='100%'>
                                         <Text noOfLines={1} m='0.5%'>{title}</Text>
                                         <Flex justify='space-between' w={['auto', '20%']}>
-                                            <Text fontSize='lg'>1</Text>
-                                            <IconButton variant='ghost' size='sm' icon={<DeleteIcon/>}/>
-                                            <Text fontSize='lg' m='0.5%'>${price}</Text>
+                                            <Text fontSize='lg'>{amount}</Text>
+                                            <IconButton onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
+                                            <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
                                         </Flex>
                                     </Flex>
                                 ))}
                                 <Divider/>
                                 <Flex justify='space-between' m='1%'>
                                     <Heading size='lg'>Total:</Heading>
-                                    <Heading size='lg'>${totalPrice || 0}</Heading>
+                                    <Heading size='lg'>${totalPrice}</Heading>
                                 </Flex>
                                 </>:
                             <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
