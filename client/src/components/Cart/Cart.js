@@ -8,8 +8,8 @@ import {DeleteIcon} from '@chakra-ui/icons'
 function Cart() {
 
     const [value, setValue] = useLocalStorage('cart')
-    const priceValues = value.map(({price}) => +price)
-    const totalPrice = priceValues.reduce((total, price) => total + price)
+    const priceValues = value.length ? value.map(({price}) => +price) : []
+    const totalPrice = priceValues.length ? priceValues.reduce((total, price) => total + price) : null
 
   return (
         <VStack w='100%' justify='center'>
@@ -38,7 +38,7 @@ function Cart() {
                                 <Divider/>
                                 <Flex justify='space-between' m='1%'>
                                     <Heading size='lg'>Total:</Heading>
-                                    <Heading size='lg'>${totalPrice}</Heading>
+                                    <Heading size='lg'>${totalPrice || 0}</Heading>
                                 </Flex>
                                 </>:
                             <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>

@@ -6,10 +6,12 @@ import CategMenu from './features/CategMenu'
 import ProfileMenu from './features/ProfileMenu'
 import HamburgerMenu from './features/HamburgerMenu'
 import useLocalStorage from '../../Hooks/useLocalStorage'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Header() {
 
     const [value] = useLocalStorage('cart')
+    const {user} = useAuth0()
   
     return (
         <Flex w='100%' h='90' align='center' bg='#32CD32' justify='space-around'>
@@ -39,7 +41,7 @@ export default function Header() {
                 <Link href='/shoppingCart'>
                     <Button variant='outline'>
                         <GiShoppingCart size={30}/>
-                        {!value.length ? null :
+                        {(!value.length && user) || !user ? null :
                             <Circle bg='red' position='absolute' top='25px' right='39px' size={26}>{value.length}</Circle>
                         }
                     </Button>
