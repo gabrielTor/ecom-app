@@ -27,7 +27,7 @@ export default function Slider() {
   useEffect(()=>{
     const interval = setInterval(() => {
       nextBtn()
-    }, 3000)
+    }, 4000)
     return () => clearInterval(interval)
   })
 

@@ -77,7 +77,7 @@ function Profile() {
             {update ? null :
             <Skeleton isLoaded={loaded} w='100%'>
                 {wishlist ?
-                <WishList userFavor={userInfo?.favorites}/> :
+                <WishList userFavor={userInfo?.favorites} userEmail={user.email}/> :
                 <MySellings userId={userInfo?._id}/>
                 }
             </Skeleton>}

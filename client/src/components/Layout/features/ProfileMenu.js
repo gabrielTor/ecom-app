@@ -33,9 +33,8 @@ export default function ProfileMenu() {
               <Login/> :
               <>
               <Link href='/profile'><Box className={style.btn}>Profile</Box></Link>
-              <Box className={style.btn}>Orders</Box>
-              <Box className={style.btn}>My Products</Box>
-              <Box className={style.btn}>Favorites</Box>
+              <Link><Box className={style.btn}>Orders</Box></Link>
+              <Link href='/profile'><Box className={style.btn}>Favorites</Box></Link>
               <Logout/>
             </>
             }
