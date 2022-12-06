@@ -27,26 +27,26 @@ function Cart() {
                     <TabPanels>
                         <TabPanel>
                             {
-                                value.length ?
-                                <>{
-                                value.map(({title, price, amount})=>(
-                                    <Flex key={title} w='100%' justify='space-between'>
-                                        <Flex>
-                                            <Text fontSize='lg'>{amount}</Text>
-                                            <IconButton m='0 20px' onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
-                                            <Text noOfLines={1} m='0.5%'>{title}</Text>
-                                        </Flex>
-                                        <Flex>
-                                            <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
-                                        </Flex>
+                            value.length ?
+                            <>{
+                            value.map(({title, price, amount})=>(
+                                <Flex key={title} w='100%' justify='space-between'>
+                                    <Flex>
+                                        <Text fontSize='lg'>{amount}</Text>
+                                        <IconButton m={['0', '0 20px']} onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
+                                        <Text noOfLines={1} m='0.5%'>{title}</Text>
                                     </Flex>
-                                ))}
-                                <Divider/>
-                                <Flex justify='space-between' m='1%'>
-                                    <Heading size='lg'>Total:</Heading>
-                                    <Heading size='lg'>${totalPrice}</Heading>
+                                    <Flex>
+                                        <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
+                                    </Flex>
                                 </Flex>
-                                </>:
+                            ))}
+                            <Divider/>
+                            <Flex justify='space-between' m='1%'>
+                                <Heading size='lg'>Total:</Heading>
+                                <Heading size='lg'>${totalPrice}</Heading>
+                            </Flex>
+                            </>:
                             <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
                             }
                         </TabPanel>
