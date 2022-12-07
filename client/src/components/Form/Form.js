@@ -54,7 +54,7 @@ function Form() {
       return dispatch(getErrors('No more than 8 images'))
     }
     dispatch(postProduct(elements))
-    navigate('/')
+    setTimeout(()=>{navigate('/')},600)
   }
   const handleBack = () => {
     if(page.second) return setPage(curr => ({...curr, second: false}))
