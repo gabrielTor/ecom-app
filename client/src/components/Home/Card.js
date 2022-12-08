@@ -1,30 +1,12 @@
 import {Image, Flex, Text, Box, Divider, Button, Link} from '@chakra-ui/react'
 import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
-import { useEffect, useState } from 'react'
-import {addToFavorites} from '../../Redux/userActions'
-import {useDispatch, useSelector} from 'react-redux'
-import { getErrors } from '../../Redux/apiSlice'
-
-import React from 'react'
+import { useState } from 'react'
+import useFavorite from '../../Hooks/useFavorite'
 
 export default function Card(props) {
 
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.api.user)
   const [show, setShow] = useState(false)
-  const [inFavor, setInfavor] = useState(false)
-
-  useEffect(()=>{
-    if(user?.favorites.includes(props.id)) setInfavor(true)
-  },[user?.favorites, props.id])
-
-  const favor = () => {
-    if(!user) dispatch(getErrors('Must login to add to favorites'))
-    else {
-      dispatch(addToFavorites({ product_id: props.id, email: user.email }))
-      setInfavor(prev => !prev)
-    }
-  }
+  const [inFavor, favor] = useFavorite(props.id)
 
   return (
     <Box w='15rem' h='20rem' mt='3%'

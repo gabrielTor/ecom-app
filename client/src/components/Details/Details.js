@@ -5,7 +5,7 @@ import {
     NumberDecrementStepper, NumberIncrementStepper,
     } from '@chakra-ui/react'
 import ImageSlider from './ImageSlider'
-import {MdFavoriteBorder} from 'react-icons/md'
+import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
@@ -14,19 +14,21 @@ import Loading from '../../features/Loading'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import { useAuth0 } from '@auth0/auth0-react'
 import { successMessage, getErrors } from '../../Redux/apiSlice'
+import useFavorite from '../../Hooks/useFavorite'
 
 export default function Details() {
 
-    const params = useParams()
+    const {id} = useParams()
     const dispatch = useDispatch()
     const {user} = useAuth0()
     const [value, setValue] = useLocalStorage('cart')
+    const [inFavor, favor] = useFavorite(id, user?.email)
     const [amount, setAmount] = useState(1)
-
     const data = useSelector(state => state.api.productInfo)
+    
     useEffect(()=>{
-        dispatch(getProductInfo(params.id))
-    }, [dispatch, params])
+        dispatch(getProductInfo(id))
+    }, [dispatch, id])
 
     const handleCart = () => {
         if(!user) return dispatch(getErrors('Must login to add to cart'))
@@ -67,7 +69,10 @@ export default function Details() {
                         </NumberInputStepper>
                     </NumberInput>
                     <Button m='3%' colorScheme='whatsapp' variant='solid' onClick={handleCart}>ADD TO CART</Button>
-                    <Button m='3%' colorScheme='whatsapp' variant='outline'><MdFavoriteBorder/>Add to Favorites</Button>
+
+                    <Button m='3%' colorScheme='whatsapp' variant='outline' onClick={favor}>
+                        {inFavor ? <><MdFavorite color='red'/>Favorite</> : <><MdFavoriteBorder/>Add to Favorites</>}
+                    </Button>
                 </Flex>
 
                 <Heading as='h3' size='lg' m='2%'>Information about the product:</Heading>
