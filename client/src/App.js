@@ -1,4 +1,7 @@
-import { ChakraProvider, theme, useToast } from '@chakra-ui/react';
+import { ChakraProvider, useToast } from '@chakra-ui/react';
+import theme from './features/theme';
+import '@fontsource/raleway/400.css'
+import '@fontsource/open-sans/700.css'
 import Layout from './components/Layout/Layout';
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home/Home';
