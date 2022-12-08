@@ -12,25 +12,29 @@ export default function CategMenu() {
     const dispatch = useDispatch()
     const categories = useSelector(state => state.api.categories)
     const [header, setHeader] = useState('All Categories')
+    const [open, setOpen] = useState(true)
 
     useEffect(()=>{
         dispatch(getCategories())
     },[dispatch])
 
     const handleCateg = (category) => {
+        setOpen(false)
         if(location.pathname !== '/'){
             if(category === 'all') return navigate('/')
             navigate('/')
             window.sessionStorage.setItem('category', category)
+            setTimeout(()=>{setOpen(true)},500)
             return setHeader(category)
         }
         if(category === 'all') return window.location.reload()
         setHeader(category)
         dispatch(getCategories(category))
+        setTimeout(()=>{setOpen(true)},500)
     }
 
   return (
-    <>
+    <>{open ? 
         <Menu>
         <MenuButton as={Button} w='100%' variant='outline'>
             <Flex justify='space-between' direction='row-reverse'><GrFormDown size={20}/>{header}</Flex>
@@ -59,7 +63,8 @@ export default function CategMenu() {
                     }
                 </SimpleGrid>
             </MenuList>
-        </Menu>
+        </Menu> :
+        <Button isLoading w='100%' variant='outline'>{header}</Button>}
     </>
   )
 }
