@@ -3,7 +3,8 @@ import {
     UnorderedList, ListItem, Button, 
     NumberInput, NumberInputField, NumberInputStepper,
     NumberDecrementStepper, NumberIncrementStepper,
-    } from '@chakra-ui/react'
+} from '@chakra-ui/react'
+import { StarIcon } from '@chakra-ui/icons'
 import ImageSlider from './ImageSlider'
 import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
@@ -51,7 +52,14 @@ export default function Details() {
             <Box w={['fit-content', '45%', '40%']} h='20%' m={['5%', '2%']}>
                 <Heading>{data.title}</Heading>
 
-                <Text m='2%'>Rating comming soon</Text>
+                <Flex m='2%' color='gray.300'>
+                    <StarIcon color='gold'/>
+                    <StarIcon color='gold'/>
+                    <StarIcon color='gold'/>
+                    <StarIcon color='gold'/>
+                    <StarIcon/>
+                    {/* <Text ml='1.5%' color='gray.400'>0 reviews</Text> */}
+                </Flex>
 
                 <Text fontSize='3xl'>${data.price}</Text>
 

@@ -1,17 +1,10 @@
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverArrow,
-    Avatar,
-    IconButton,
-    Box,
-    Spinner,
-    Link
-  } from '@chakra-ui/react'
-import { useAuth0 } from "@auth0/auth0-react";
-import Login from '../../auth0/features/Login';
-import Logout from '../../auth0/features/Logout';
+    Popover, PopoverTrigger, PopoverContent, PopoverArrow,
+    Avatar, IconButton, Box, Spinner, Link
+} from '@chakra-ui/react'
+import { useAuth0 } from "@auth0/auth0-react"
+import Login from '../../auth0/Login'
+import Logout from '../../auth0/Logout'
 import style from '../styles/profileMenu.module.css'
 
 export default function ProfileMenu() {
