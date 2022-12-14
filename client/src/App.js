@@ -10,6 +10,7 @@ import Profile from './components/Profile/Profile'
 import Form from './components/Form/Form'
 import Cart from './components/Cart/Cart'
 import useSuccessOrError from './Hooks/useSuccessOrError'
+import Messages from './components/Messages/Messages'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='info/:id' element={<Details/>}/>
           <Route path='profile' element={<Profile/>}/>
           <Route path='shoppingCart' element={<Cart/>}/>
+          <Route path='messages' element={<Messages/>}/>
         </Route>
         <Route>
           <Route path='/sell' element={<Form/>}/>

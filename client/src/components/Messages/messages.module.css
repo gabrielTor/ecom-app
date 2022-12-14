@@ -1,0 +1,15 @@
+.user{
+    background-color: rgba(66, 173, 244, 0.67);
+    padding: 2.5%;
+    width: 60%;
+    border-radius: 10px;
+    margin: 2%;
+}
+.otherUser{
+    background-color: rgba(66, 244, 125, 0.67);
+    padding: 2.5%;
+    width: 60%;
+    border-radius: 10px;
+    margin: 2%;
+    margin-left: auto;
+}
