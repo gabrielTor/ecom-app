@@ -4,8 +4,8 @@ import io from 'socket.io-client'
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import Chat from './Chat'
 
-// const socket = io.connect('https://websocket-server-mxn0.onrender.com')
-const socket = io.connect('http://localhost:3002')
+const socket = io.connect('https://websocket-server-mxn0.onrender.com')
+// const socket = io.connect('http://localhost:3002')
 
 function Messages() {
   
