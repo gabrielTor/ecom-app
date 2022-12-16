@@ -40,7 +40,7 @@ function Messages() {
     }, [chat])
 
   return (
-    <VStack mt='3%' h='80vh'>
+    <VStack mt='3%' h='85vh'>
       <Chat chat={chat} user={user.email} typing={typing?.typing} userTyping={typing?.user}/>
       <Center w={['100%', '80%', '60%']}>
         <Input value={message} bg='white' placeholder='message' onChange={handleTyping}/>
