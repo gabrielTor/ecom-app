@@ -2,7 +2,7 @@ import styles from './messages.module.css'
 import { Text, Box } from '@chakra-ui/react'
 import { useEffect, useRef, useId } from 'react'
 
-export default function Chat({chat, user}) {
+export default function Chat({chat, user, typing, userTyping}) {
 
     const lastMessageRef = useRef(null)
     const id = useId()
@@ -20,6 +20,7 @@ export default function Chat({chat, user}) {
               <Text fontWeight='semibold'>{mess}</Text>
             </Box>
           ))}
+          <Text m='3%'>{userTyping !== user && typing}</Text>
         <Box ref={lastMessageRef}/>
     </Box>
     </>
