@@ -4,11 +4,11 @@ import io from 'socket.io-client'
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import Chat from './Chat'
 
+const socket = io.connect('https://websocket-server-mxn0.onrender.com')
 
 function Messages() {
   
-  // const socket = io.connect('https://websocket-server-mxn0.onrender.com')
-  const socket = io.connect('http://localhost:3002')
+  // const socket = io.connect('http://localhost:3002')
   const {user} = useAuth0()
   const [message, setMessage] = useState('')
   const [chat, setChat] = useState([])
@@ -17,6 +17,7 @@ function Messages() {
   
   const handleSend = () => {
       socket.emit('send_message', {message, userEmail: user.email, room: 'abc'})
+      setChat([...chat, {mess: message, currentUser: user.email}])
       setMessage('')
   }
   // const handleTyping = () => {
@@ -32,7 +33,7 @@ function Messages() {
       //     setTyping(data.typing)
       //   } else set
       // })
-    }, [socket, chat])
+    }, [chat])
 
   return (
     <VStack mt='3%' h='80vh'>
