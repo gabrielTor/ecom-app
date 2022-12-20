@@ -4,8 +4,8 @@ import io from 'socket.io-client'
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import Chat from './Chat'
 
-const socket = io.connect('https://websocket-server-mxn0.onrender.com')
-// const socket = io.connect('http://localhost:3002')
+// const socket = io.connect('https://websocket-server-mxn0.onrender.com')
+const socket = io.connect('http://localhost:3002')
 
 function Messages() {
   
@@ -19,7 +19,7 @@ function Messages() {
     if(!message) return
     socket.emit('send_message', {message, userEmail: user.email, room: 'abc'})
     socket.emit('typing', {typing: ''})
-    setChat([...chat, {mess: message, currentUser: user.email}])
+    setChat([...chat, {text: message, currentUser: user.email}])
     setMessage('')
   }
   const handleTyping = (event) => {
@@ -32,7 +32,7 @@ function Messages() {
 
   useEffect(() => {
       socket.on("receive_message", (data) => {
-        setChat([...chat, {mess: data.message, currentUser: data.userEmail}])
+        setChat([...chat, {text: data.message, currentUser: data.userEmail}])
       })
       socket.on('display', (data) => {
         setTyping(data)

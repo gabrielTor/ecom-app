@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
 import ImageSlider from './ImageSlider'
-import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
+import {MdFavoriteBorder, MdFavorite, MdChat} from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
@@ -16,6 +16,7 @@ import useLocalStorage from '../../Hooks/useLocalStorage'
 import { useAuth0 } from '@auth0/auth0-react'
 import { successMessage, getErrors } from '../../Redux/apiSlice'
 import useFavorite from '../../Hooks/useFavorite'
+import useJoinChat from '../../Hooks/useJoinChat'
 
 export default function Details() {
 
@@ -24,8 +25,10 @@ export default function Details() {
     const {user} = useAuth0()
     const [value, setValue] = useLocalStorage('cart')
     const [inFavor, favor] = useFavorite(id, user?.email)
+    const [setChatIds] = useJoinChat()
     const [amount, setAmount] = useState(1)
     const data = useSelector(state => state.api.productInfo)
+    const userData = useSelector(state => state.api.user)
     
     useEffect(()=>{
         dispatch(getProductInfo(id))
@@ -40,6 +43,13 @@ export default function Details() {
         }
         setValue(prev => [...prev, {title: data.title, price: data.price, amount}])
         dispatch(successMessage({message: 'Added to Cart'}))
+    }
+    const handleChat = () => {
+        setChatIds({
+            userId: userData._id,
+            sellerUserId: data.userId,
+            productId: id
+        })
     }
 
   return (
@@ -58,7 +68,9 @@ export default function Details() {
                     <StarIcon color='gold'/>
                     <StarIcon color='gold'/>
                     <StarIcon/>
-                    {/* <Text ml='1.5%' color='gray.400'>0 reviews</Text> */}
+                    <Text ml='1.5%' color='gray.400'
+                     _before={{ content: '"("' }}
+                     _after={{ content: '")"' }}>100 reviews</Text>
                 </Flex>
 
                 <Text fontSize='3xl'>${data.price}</Text>
@@ -90,6 +102,7 @@ export default function Details() {
                     ))}
                 </UnorderedList>
             </Box>
+            <Button bg='gray.300' onClick={handleChat} disabled><MdChat color='green'/>Chat with the seller</Button>
         </Flex>
     }
     </>

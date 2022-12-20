@@ -28,6 +28,7 @@ export default function ProfileMenu() {
               <Link href='/profile'><Box className={style.btn}>Profile</Box></Link>
               <Link><Box className={style.btn}>Orders</Box></Link>
               <Link href='/profile'><Box className={style.btn}>Favorites</Box></Link>
+              <Link><Box className={style.btn}>Messages</Box></Link>
               <Logout/>
             </>
             }
