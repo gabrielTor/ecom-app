@@ -13,15 +13,13 @@ export default function useJoinChat() {
     
     const dispatch = useDispatch()
     const [value, setValue] = useSessionStorage('chatId')
-    const [id, setId] = useState(null)
     const [chatIds, setChatIds] = useState(null)
 
     useEffect(()=>{ 
         const createChat = async() => {
             try {
                 if(chatIds){
-                    const resp = await axios.post('/chat', chatIds)
-                    setId(resp.data._id.toString())
+                    const resp = await axios.post(`${process.env.REACT_APP_GABR}/chat`, chatIds)
                     setValue(resp.data._id.toString())
                 }
             } catch (error) {
@@ -31,14 +29,7 @@ export default function useJoinChat() {
         createChat()
     },[chatIds, setValue])
     
-    useEffect(()=>{
-        if(id) {
-            socket.emit("join_room", id)
-        }
-        else if(!id && value) {
-            socket.emit("join_room", value)
-        }
-    }, [value, id])
+    socket.emit("join_room", value)
 
-    return [setChatIds, setId]
+    return [setChatIds]
 }
