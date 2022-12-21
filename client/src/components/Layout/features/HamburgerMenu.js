@@ -32,7 +32,9 @@ export default function HamburgerMenu() {
                     <Link href='/shoppingCart'>
                         <Button w='100%' variant='outline' mb='5%'>Shopping Cart</Button>
                     </Link>
-                    <Button w='100%' variant='outline' mb='5%'>Messages</Button>
+                    <Link href='/messages'>
+                        <Button w='100%' variant='outline' mb='5%'>Messages</Button>
+                    </Link>
                 </DrawerBody>
             </DrawerContent>
         </Drawer>

@@ -8,6 +8,7 @@ export default function Logout() {
     const dispatch = useDispatch()
     const { logout, isAuthenticated, user } = useAuth0();
     const handleLogout = () => {
+        sessionStorage.clear()
         dispatch(logOut({email: user.email}))
         logout()
     }

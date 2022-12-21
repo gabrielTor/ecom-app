@@ -13,7 +13,8 @@ export const apiSlice = createSlice({
         error: null,
         success: null,
         disable: false,
-        favorites: []
+        favorites: [],
+        chats: null
     },
     reducers: {
         getProducts: (state, action) => {
@@ -65,7 +66,10 @@ export const apiSlice = createSlice({
         },
         updateCurrUser: (state, action) => {
             state.user = {...state.user, name: action.payload.name, socialMedia: action.payload.socialMedia}
-        }
+        },
+        getChats: (state, action) => {
+            state.chats = action.payload
+        },
     }
 })
     
@@ -83,7 +87,8 @@ export const {
     resetSuccessM,
     getByCateg,
     setFavorites,
-    updateCurrUser
+    updateCurrUser,
+    getChats
 } = apiSlice.actions
 
 export default apiSlice.reducer

@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const productController = require('../controllers/productController')
 const userController = require('../controllers/userController')
+const chatController = require('../controllers/chatController')
 
 router.get('/categories', productController.getCategories)
 router.get('/products', productController.getProducts)
@@ -17,5 +18,8 @@ router.post('/registerOrLogin', userController.createUser)
 router.put('/logout', userController.logout)
 router.put('/updateUser', userController.updateUser)
 router.put('/addFavor', userController.addToFavorites)
+
+router.get('/getChats', chatController.getChats)
+router.post('/chat', chatController.newChat)
 
 module.exports = router;

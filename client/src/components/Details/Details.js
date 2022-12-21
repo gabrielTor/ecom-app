@@ -7,21 +7,23 @@ import {
 import { StarIcon } from '@chakra-ui/icons'
 import ImageSlider from './ImageSlider'
 import {MdFavoriteBorder, MdFavorite, MdChat} from 'react-icons/md'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductInfo } from '../../Redux/productActions'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Loading from '../../features/Loading'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import { useAuth0 } from '@auth0/auth0-react'
 import { successMessage, getErrors } from '../../Redux/apiSlice'
 import useFavorite from '../../Hooks/useFavorite'
 import useJoinChat from '../../Hooks/useJoinChat'
+import useFetch from '../../Hooks/useFetch'
 
 export default function Details() {
 
     const {id} = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {user} = useAuth0()
     const [value, setValue] = useLocalStorage('cart')
     const [inFavor, favor] = useFavorite(id, user?.email)
@@ -29,11 +31,8 @@ export default function Details() {
     const [amount, setAmount] = useState(1)
     const data = useSelector(state => state.api.productInfo)
     const userData = useSelector(state => state.api.user)
+    useFetch(getProductInfo, id)
     
-    useEffect(()=>{
-        dispatch(getProductInfo(id))
-    }, [dispatch, id])
-
     const handleCart = () => {
         if(!user) return dispatch(getErrors('Must login to add to cart'))
         else if(value.length){
@@ -45,11 +44,13 @@ export default function Details() {
         dispatch(successMessage({message: 'Added to Cart'}))
     }
     const handleChat = () => {
+        if(!user) return
         setChatIds({
             userId: userData._id,
             sellerUserId: data.userId,
             productId: id
         })
+        setTimeout(()=>{navigate('/messages')},500)
     }
 
   return (
@@ -102,7 +103,7 @@ export default function Details() {
                     ))}
                 </UnorderedList>
             </Box>
-            <Button bg='gray.300' onClick={handleChat} disabled><MdChat color='green'/>Chat with the seller</Button>
+            <Button bg='gray.300' onClick={handleChat}><MdChat color='green'/>Chat with the seller</Button>
         </Flex>
     }
     </>
