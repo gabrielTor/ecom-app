@@ -59,7 +59,7 @@ function Messages() {
     let input = event.target.value
     setMessage(input)
     input !== '' ?
-    socket.emit('typing', {typing: 'typing...', user: user.email}) :
+    socket.emit('typing', {typing: 'typing...'}) :
     socket.emit('typing', {typing: ''})
   }
 
@@ -84,7 +84,7 @@ function Messages() {
           }
         </Box>
         <Box w={['90%', '80%', '60%']}>
-        <Chat chat={chat} user={user.email} typing={typing?.typing} userTyping={typing?.user}/>
+        <Chat chat={chat} user={user.email} typing={typing?.typing}/>
         <Center mt='7px'>
           <Input value={message} bg='white' placeholder='message' onChange={handleTyping}/>
           <Button bg='#32CD32' ml='7px' onClick={handleSend}>Send</Button>
