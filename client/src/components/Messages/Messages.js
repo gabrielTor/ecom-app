@@ -51,7 +51,7 @@ function Messages() {
   const handleSend = () => {
     if(!message) return
     socket.emit('send_message', {text: message, currentUser: user.email, room: value})
-    socket.emit('typing', {typing: ''})
+    socket.emit('typing', {typing: '', room: value})
     setChat([...chat, {text: message, currentUser: user.email}])
     setMessage('')
   }
