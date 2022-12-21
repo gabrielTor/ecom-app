@@ -35,7 +35,7 @@ function Messages() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-        setChat([...chat, {text: data.message, currentUser: data.userEmail}])
+        setChat([...chat, {text: data.text, currentUser: data.currentUser}])
     })
     socket.on('display', (data) => {
         setTyping(data)
