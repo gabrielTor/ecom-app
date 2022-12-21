@@ -24,6 +24,7 @@ const getChats = async(req, res) => {
 
 const newChat = async(req, res) => {
     const {userId, sellerUserId, productId} = req.body
+    if(userId === sellerUserId) return res.status(400).json({message: 'you cannot chat with yourself'})
     try {
         const chatFound = await Chat.findOne({userId, sellerUserId, productId})
         if(chatFound) return res.json(chatFound)

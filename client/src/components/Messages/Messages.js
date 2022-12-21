@@ -22,7 +22,7 @@ function Messages() {
   const [typing, setTyping] = useState('')
   const chats = useSelector(state => state.api.chats)
   const userConnected = useSelector(state => state.api.user)
-  const [value] = useSessionStorage('chatId')
+  const [value, setValue] = useSessionStorage('chatId')
   useJoinChat()
   useFetch(userChats, userConnected?._id)
 
@@ -63,15 +63,16 @@ function Messages() {
     socket.emit('typing', {typing: ''})
   }
 
-
   return (
     <VStack mt='3%' h='85vh'>
       <Center w='100%'>
-        <Box bg='white' w={['fit-content', '20%', '15%']} h='23em' 
+        <Box bg='white' w={['fit-content', '20%']} h='23em' 
           mr='4px' rounded='base' overflowY='scroll'>
           {
             chats?.map(({product, chat}) => (
-              <Box key={chat._id} bg='blue.100' mb={['12%', '4%']}>
+              <Box key={chat._id} bg={value === chat._id ? 'blue.300' : 'blue.100'} mb={['12%', '4%']}
+                onClick={()=>setValue(chat._id)}
+                cursor='pointer'>
                 <Flex>
                   <Avatar size='sm' src={product.image[0].url} name={product.title}/>
                   <Show breakpoint='(min-width: 500px)'>
