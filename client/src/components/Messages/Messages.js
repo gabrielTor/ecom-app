@@ -23,7 +23,7 @@ function Messages() {
   const chats = useSelector(state => state.api.chats)
   const userConnected = useSelector(state => state.api.user)
   const [value, setValue] = useSessionStorage('chatId')
-  socket.emit("join_room", value)
+  // socket.emit("join_room", value)
   useJoinChat()
   useFetch(userChats, userConnected?._id)
 
