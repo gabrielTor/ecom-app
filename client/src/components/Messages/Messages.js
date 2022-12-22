@@ -39,7 +39,7 @@ function Messages() {
     socket.on('display', (data) => {
       setTyping(data)
     })
-  }, [chat])
+  }, [])
   
   useEffect(()=>{
     if(isAuthenticated && user){
