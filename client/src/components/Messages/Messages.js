@@ -34,7 +34,7 @@ function Messages() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setChat([...chat, {text: data.text, currentUser: data.currentUser}])
+      setChat((prev)=>[...prev, {text: data.text, currentUser: data.currentUser}])
     })
     socket.on('display', (data) => {
       setTyping(data)
@@ -51,7 +51,7 @@ function Messages() {
     if(!message) return
     socket.emit('send_message', {text: message, currentUser: user.email, room: value})
     socket.emit('typing', {typing: '', room: value})
-    setChat([...chat, {text: message, currentUser: user.email}])
+    setChat((prev)=>[...prev, {text: message, currentUser: user.email}])
     setMessage('')
   }
   const handleTyping = (event) => {
