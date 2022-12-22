@@ -23,6 +23,7 @@ function Messages() {
   const chats = useSelector(state => state.api.chats)
   const userConnected = useSelector(state => state.api.user)
   const [value, setValue] = useSessionStorage('chatId')
+  socket.emit("join_room", value)
   useJoinChat()
   useFetch(userChats, userConnected?._id)
 
@@ -35,10 +36,10 @@ function Messages() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-        setChat([...chat, {text: data.text, currentUser: data.currentUser}])
+      setChat([...chat, {text: data.text, currentUser: data.currentUser}])
     })
     socket.on('display', (data) => {
-        setTyping(data)
+      setTyping(data)
     })
   }, [chat])
   
@@ -59,8 +60,8 @@ function Messages() {
     let input = event.target.value
     setMessage(input)
     input !== '' ?
-    socket.emit('typing', {typing: 'typing...'}) :
-    socket.emit('typing', {typing: ''})
+    socket.emit('typing', {typing: 'typing...', room: value}) :
+    socket.emit('typing', {typing: '', room: value})
   }
 
   return (

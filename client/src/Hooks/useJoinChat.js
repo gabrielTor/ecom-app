@@ -19,7 +19,7 @@ export default function useJoinChat() {
         const createChat = async() => {
             try {
                 if(chatIds){
-                    const resp = await axios.post(`${process.env.REACT_APP_GABR}/chat`, chatIds)
+                    const resp = await axios.post('/chat', chatIds)
                     setValue(resp.data._id.toString())
                 }
             } catch (error) {

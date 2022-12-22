@@ -15,7 +15,7 @@ export default function Chat({chat, user, typing}) {
     <Box h='20em' bg='white' overflowY='scroll' rounded='base'>
           {chat?.map(({text, currentUser, _id}, ind)=>(
             <Box key={_id || ind} className={currentUser === user ? styles.otherUser : styles.user}>
-              <Text fontSize='60%'>{currentUser}</Text>
+              <Text fontSize='60%' mb='2%'>{currentUser}</Text>
               <Text fontWeight='semibold'>{text}</Text>
             </Box>
           ))}
