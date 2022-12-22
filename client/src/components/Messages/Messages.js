@@ -2,7 +2,6 @@ import { Button, Input, Center, VStack, Box, Heading, Flex, Avatar, Show } from 
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import { loginUser } from '../../Redux/userActions'
 import Chat from './Chat'
-import useJoinChat from '../../Hooks/useJoinChat'
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import { useSelector, useDispatch } from 'react-redux'
