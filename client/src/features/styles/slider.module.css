@@ -57,8 +57,6 @@
     .active, .dot:hover {
         background-color: black;
     }
-}
-@media(max-width: 750px){
     .btn{
         display: none;
     }
