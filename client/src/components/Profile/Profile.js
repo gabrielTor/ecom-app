@@ -1,31 +1,25 @@
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {VStack, Stack, IconButton, Image, Text, ButtonGroup, Skeleton, Button} from '@chakra-ui/react'
 import {EditIcon} from '@chakra-ui/icons'
-import {loginUser} from '../../Redux/userActions'
 import {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import EditProfile from "./features/EditProfile"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import MySellings from "./features/MySellings"
 import WishList from "./features/WishList"
+import useFetch from "../../Hooks/useFetch";
 
 
 function Profile() {
 
-    const { user, isAuthenticated } = useAuth0()
+    const { user } = useAuth0()
     const [update, setUpdate] = useState(false)
     const [wishlist, setWishlist] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [loaded, setLoaded] = useState(false)
     const userInfo = useSelector(state => state.api.user)
     const userListings = useSelector(state => state.api.userListings)
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        if(isAuthenticated && user){
-            dispatch(loginUser({email: user.email}))
-        }
-    }, [dispatch, user, isAuthenticated])
+    useFetch()
 
     useEffect(()=>{
         if(userInfo){

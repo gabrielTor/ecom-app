@@ -4,11 +4,11 @@ import { useEffect, useRef } from 'react'
 
 export default function Chat({chat, user, typing}) {
 
-    const lastMessageRef = useRef(null)
+  const lastMessageRef = useRef(null)
 
-    useEffect(()=>{
-        lastMessageRef.current?.scrollIntoView({behavior: 'smooth'})
-    },[chat])
+  useEffect(()=>{
+    lastMessageRef.current?.scrollIntoView({behavior: 'smooth'})
+  },[chat])
 
   return (
     <>

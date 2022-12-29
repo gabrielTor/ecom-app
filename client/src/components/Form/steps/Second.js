@@ -1,23 +1,12 @@
 import {
-    Box,
-    Flex,
-    Center,
-    Heading,
-    FormControl,
-    FormLabel,
-    Input,
+    Box, Flex, Center, Heading,
+    FormControl, FormLabel, Input,
     FormHelperText,
-    RadioGroup,
-    Radio,
-    HStack,
-    InputGroup,
-    InputLeftElement,
-    InputRightElement,
-    Button,
-    UnorderedList,
-    ListItem,
-    useToast
-} from '@chakra-ui/react'
+    RadioGroup, Radio,
+    HStack, InputGroup,
+    InputLeftElement, InputRightElement,
+    Button, UnorderedList, ListItem,
+    useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 
 export default function Second({elements, setElements, setPage}) {
@@ -43,12 +32,12 @@ export default function Second({elements, setElements, setPage}) {
         setElements((curr)=> ({...curr, description: values}))
     }
     const handleNext = () => {
-        if(elements.title && elements.price){
+        if(elements.title && elements.price && elements.stock >= 1){
             setPage((curr)=>({...curr, second: true}))
         } else {
             toast({
                 title: 'Fill in the required fields',
-                description: (!elements.title && 'missing title') || (!elements.price && 'missing price') ,
+                description: (!elements.title && 'missing title') || (!elements.price && 'missing price') || (elements.stock < 1 && 'stock cannot be below 1'),
                 status: 'error',
                 isClosable: true
             })
@@ -57,9 +46,7 @@ export default function Second({elements, setElements, setPage}) {
 
   return (
     <Box>
-    <Center padding='2%'>
-        <Heading>Fill out required Infomation</Heading>
-    </Center>
+    <Center padding='2%'><Heading>Fill out required Infomation</Heading></Center>
     <Flex justify='center' pb='20%'>
         <Box border='1px' w={['100%', '75%', '60%', '50%']} h='fit-content' m='2%' borderRadius='0.5%' p='2%' bg='gray.300'>
 
@@ -106,15 +93,11 @@ export default function Second({elements, setElements, setPage}) {
             </FormControl>
 
             <UnorderedList m='5%'>
-                {
-                    elements.description?.map((elem)=>(
-                        <ListItem key={key++}>{elem}<Button onClick={()=>handldDelete(elem)} color='red'>x</Button></ListItem>
-                    ))
-                }
+                {elements.description?.map((elem)=>(
+                    <ListItem key={key++}>{elem}<Button onClick={()=>handldDelete(elem)} color='red'>x</Button></ListItem>
+                ))}
             </UnorderedList>
-
             <Button onClick={handleNext}>Upload Images</Button>
-
         </Box>
     </Flex>
     </Box>

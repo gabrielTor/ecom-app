@@ -1,10 +1,9 @@
 import { Button, Input, Center, VStack, Box, Heading, Flex, Avatar, Show } from '@chakra-ui/react'
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
-import { loginUser } from '../../Redux/userActions'
 import Chat from './Chat'
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { userChats } from '../../Redux/chatActions'
 import useFetch from '../../Hooks/useFetch'
 import useSessionStorage from '../../Hooks/useSessionStorage'
@@ -14,8 +13,7 @@ const socket = io.connect('https://websocket-server-mxn0.onrender.com')
 
 function Messages() {
   
-  const dispatch = useDispatch()
-  const {user, isAuthenticated} = useAuth0()
+  const {user} = useAuth0()
   const [message, setMessage] = useState('')
   const [chat, setChat] = useState([])
   const [typing, setTyping] = useState('')
@@ -40,12 +38,6 @@ function Messages() {
       setTyping(data)
     })
   }, [])
-  
-  useEffect(()=>{
-    if(isAuthenticated && user){
-        dispatch(loginUser({email: user.email}))
-    }
-  }, [dispatch, user, isAuthenticated])
 
   const handleSend = () => {
     if(!message) return

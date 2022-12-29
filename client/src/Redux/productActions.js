@@ -86,10 +86,10 @@ export function deleteCloudImg(id){
     }
 }
 
-export function getFavorites(ids){
+export function getFavorites(value){
     return async(dispatch) =>{
         try {
-            const resp = await axios.post('/favorites', ids)
+            const resp = await axios.post('/favorites', {ids: value})
             await dispatch(setFavorites(resp.data))
         } catch (error) {
             dispatch(getErrors(error.response.data.message))

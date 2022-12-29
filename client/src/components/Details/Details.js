@@ -4,8 +4,8 @@ import {
     NumberInput, NumberInputField, NumberInputStepper,
     NumberDecrementStepper, NumberIncrementStepper,
 } from '@chakra-ui/react'
-import { StarIcon } from '@chakra-ui/icons'
-import ImageSlider from './ImageSlider'
+import ImageSlider from './features/ImageSlider'
+import Rating from './features/Rating'
 import {MdFavoriteBorder, MdFavorite, MdChat} from 'react-icons/md'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -57,23 +57,10 @@ export default function Details() {
     <>
     {!data.title ? <Loading/> :
         <Flex justify='space-evenly' marginTop='5%' wrap='wrap'>
-            <Box w={['fit-content', '45%', '40%']} h='20%' m={['5%', '2%']}>
-                <ImageSlider slides={data.image}/>
-            </Box>
+            <ImageSlider slides={data.image}/>
             <Box w={['fit-content', '45%', '40%']} h='20%' m={['5%', '2%']}>
                 <Heading>{data.title}</Heading>
-
-                <Flex m='2%' color='gray.300'>
-                    <StarIcon color='gold'/>
-                    <StarIcon color='gold'/>
-                    <StarIcon color='gold'/>
-                    <StarIcon color='gold'/>
-                    <StarIcon/>
-                    <Text ml='1.5%' color='gray.400'
-                     _before={{ content: '"("' }}
-                     _after={{ content: '")"' }}>100 reviews</Text>
-                </Flex>
-
+                <Rating/>
                 <Text fontSize='3xl'>${data.price}</Text>
 
                 <Flex direction='column' w='50%'>

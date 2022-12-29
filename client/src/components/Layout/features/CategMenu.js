@@ -1,9 +1,10 @@
 import {Button, Box, SimpleGrid, Heading, Menu, MenuButton, MenuList, Flex} from '@chakra-ui/react'
 import { getCategories } from '../../../Redux/productActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {GrFormDown} from 'react-icons/gr'
 import {useNavigate, useLocation} from 'react-router-dom'
+import useFetch from '../../../Hooks/useFetch'
 
 export default function CategMenu() {
 
@@ -13,10 +14,7 @@ export default function CategMenu() {
     const categories = useSelector(state => state.api.categories)
     const [header, setHeader] = useState('All Categories')
     const [open, setOpen] = useState(true)
-
-    useEffect(()=>{
-        dispatch(getCategories())
-    },[dispatch])
+    useFetch(getCategories)
 
     const handleCateg = (category) => {
         setOpen(false)
@@ -51,16 +49,13 @@ export default function CategMenu() {
                             <Button variant='link' color='black' onClick={()=>handleCateg(c.main)}>
                                 <Heading size='md'>{c.main}</Heading>
                             </Button>
-                            {
-                            c.subcategories.map(sub => (
+                            {c.subcategories.map(sub => (
                                 <Box key={sub}>
                                     <Button variant='link' onClick={()=>handleCateg(sub)}>{sub}</Button>
                                 </Box>
-                            ))
-                            }
+                            ))}
                         </Box>
-                        ))
-                    }
+                        ))}
                 </SimpleGrid>
             </MenuList>
         </Menu> :

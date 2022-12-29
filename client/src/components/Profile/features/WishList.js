@@ -1,5 +1,5 @@
 import {VStack, Container, Image, Heading, Flex, Text, Link, Button} from '@chakra-ui/react'
-import { useEffect } from 'react'
+import useFetch from '../../../Hooks/useFetch'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFavorites } from '../../../Redux/apiSlice'
 import { getFavorites } from '../../../Redux/productActions'
@@ -9,10 +9,7 @@ export default function WishList({userFavor, userEmail}) {
 
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.api.favorites)
-
-  useEffect(()=>{
-    dispatch(getFavorites({ids: userFavor}))
-  },[dispatch, userFavor])
+  useFetch(getFavorites, userFavor)
 
   const handleRemove = (id) => {
     dispatch(addToFavorites({ product_id: id, email: userEmail }))

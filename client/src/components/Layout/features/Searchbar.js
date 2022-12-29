@@ -9,7 +9,7 @@ export default function Searchbar() {
   
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
-    const location = useLocation()
+    const {pathname} = useLocation()
     const navigate = useNavigate()
 
     const handleOnSearch = (event) => {
@@ -17,7 +17,7 @@ export default function Searchbar() {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        if(location.pathname !== '/'){
+        if(pathname !== '/'){
             navigate('/')
             window.sessionStorage.setItem('searchItem', search)
             return setSearch('')
@@ -29,14 +29,14 @@ export default function Searchbar() {
     return (
         <Flex w={['65%', '60%', '40%']}>
             <InputGroup>
-            <Input
-            type="search"
-            placeholder="Search product, brand or more..."
-            value={search}
-            onChange={(e) => handleOnSearch(e)}
-            bg='white'
-            />
-            <InputRightElement children={<Button onClick={handleSubmit}><SearchIcon/></Button>}/>
+                <Input
+                type="search"
+                placeholder="Search product, brand or more..."
+                value={search}
+                onChange={(e) => handleOnSearch(e)}
+                bg='white'
+                />
+                <InputRightElement children={<Button onClick={handleSubmit}><SearchIcon/></Button>}/>
             </InputGroup>
         </Flex>
     )

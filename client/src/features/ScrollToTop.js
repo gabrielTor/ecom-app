@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { ArrowUpIcon } from '@chakra-ui/icons';
 import { Box, Button } from '@chakra-ui/react';
 import {FaArrowUp} from 'react-icons/fa'
 
@@ -28,8 +27,7 @@ export default function ScrollToTop() {
   }, [])
 
   return (
-    <>
-    {isVisible && (
+    <>{isVisible && (
       <Box
         onClick={scrollToTop}
         position='fixed'
@@ -43,7 +41,6 @@ export default function ScrollToTop() {
           <FaArrowUp size={30} />
         </Button>
       </Box>
-    )}
-  </>
-)
+    )}</>
+  )
 }

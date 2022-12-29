@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getProductsPage, searchProducts } from '../../Redux/productActions'
 import ScrollToTop from '../../features/ScrollToTop'
-import { useAuth0 } from "@auth0/auth0-react";
-import { loginUser } from '../../Redux/userActions'
 import Slider from '../../features/Slider'
+import useFetch from '../../Hooks/useFetch'
 
 export default function Home() {
     
@@ -16,7 +15,7 @@ export default function Home() {
     const count = useSelector(state => state.api.count)
     const disable = useSelector(state => state.api.disable)
     const [page, setPage] = useState(1)
-    const {user, isAuthenticated} = useAuth0()
+    useFetch()
 
     useEffect(()=>{
         let search = window.sessionStorage.getItem('searchItem')
@@ -31,12 +30,6 @@ export default function Home() {
         }
     }, [dispatch])
 
-    useEffect(()=>{
-        if(isAuthenticated && user){
-            dispatch(loginUser({email: user.email}))
-        }
-    }, [dispatch, user, isAuthenticated])
-
     const handleLoad = () => {
         setPage(prev => prev + 1)
         dispatch(getProductsPage(page))
@@ -49,24 +42,19 @@ export default function Home() {
                 {!disable && <Heading size='md' marginBottom='2%'>Most Recent</Heading>}
                 {!data?.length ? <Loading/> :
                 <Flex wrap='wrap' justify='space-around'>
-                    {
-                    data?.map(prod=>(
+                    {data?.map(prod=>(
                         <Card key={prod._id}
                             id={prod._id}
                             title={prod.title}
                             price={prod.price}
                             image={prod.image[0].url}/>
-                        ))
-                    }
-                </Flex>
-                }
+                        ))}
+                </Flex>}
             </Box>
-            {
-            disable ? null :        
+            { disable ? null :        
             <Center>
                 <Button m='7%' isDisabled={count === data?.length} onClick={handleLoad}>Load More</Button>
-            </Center>
-            }
+            </Center> }
             <ScrollToTop/>
         </Box>
     )

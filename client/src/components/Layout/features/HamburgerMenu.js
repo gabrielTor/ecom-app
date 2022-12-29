@@ -6,9 +6,7 @@ import {
     DrawerOverlay,
     DrawerContent,
     useDisclosure,
-    IconButton,
-    Link,
-    Button
+    IconButton, Link, Button
 } from '@chakra-ui/react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 

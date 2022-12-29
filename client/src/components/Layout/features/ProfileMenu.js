@@ -1,6 +1,6 @@
 import {
-    Popover, PopoverTrigger, PopoverContent, PopoverArrow,
-    Avatar, IconButton, Box, Spinner, Link
+  Popover, PopoverTrigger, PopoverContent, PopoverArrow,
+  Avatar, IconButton, Box, Spinner, Link
 } from '@chakra-ui/react'
 import { useAuth0 } from "@auth0/auth0-react"
 import Login from '../../auth0/Login'

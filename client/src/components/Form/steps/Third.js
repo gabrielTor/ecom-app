@@ -34,9 +34,7 @@ export default function Third({setElements, images}) {
 
   return (
     <Box>
-      <Center padding='2%'>
-        <Heading>Upload Images</Heading>
-      </Center>
+      <Center padding='2%'><Heading>Upload Images</Heading></Center>
       <Flex justify='center'>
         <Box w={['100%', '75%', '60%', '50%']} h='40em'>
           <Image src={img} alt='uploadImg' h='40%' w={['100%', '75%', '60%', '50%']} position='absolute'/>

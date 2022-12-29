@@ -33,22 +33,21 @@ export default function Slider() {
 
   return (
     <Box className={style.slideshowContainer}>
-
-        {imgArr.map(({id, img}) => (
-        <Box key={id}>
-            <Image
-              className={id === slide ? `${style.display} ${style.fade}` : style.noDisplay} 
-              src={img}
-              alt='sliderImages'/>
-        </Box>))}
+      {imgArr.map(({id, img}) => (
+      <Box key={id}>
+          <Image
+            className={id === slide ? `${style.display} ${style.fade}` : style.noDisplay} 
+            src={img}
+            alt='sliderImages'/>
+      </Box>))}
       <Flex w='100%' justify='center'>
-        <Button onClick={prevBtn}>&#10094;</Button>
+        <Button className={style.btn} onClick={prevBtn}>&#10094;</Button>
         <Flex justify='center' pt='1%'>
           {imgArr.map(({id}) => (
             <span key={id} onClick={()=>setSlide(id)} className={id === slide ? `${style.dot} ${style.active}` : style.dot}></span>
           ))}
         </Flex>
-        <Button onClick={nextBtn}>&#10095;</Button>
+        <Button className={style.btn} onClick={nextBtn}>&#10095;</Button>
       </Flex>
     </Box>
   )
