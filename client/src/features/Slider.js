@@ -1,6 +1,6 @@
 import style from './styles/slider.module.css'
 import { useState, useEffect } from "react"
-import { Box, Image, Button, Flex } from '@chakra-ui/react'
+import { Box, Image, Button, Flex, Show } from '@chakra-ui/react'
 
 const imgArr = [
     {id: 1, img: 'https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1669409420757-home-sliderdesktop2.jpg'},
@@ -41,13 +41,13 @@ export default function Slider() {
             alt='sliderImages'/>
       </Box>))}
       <Flex w='100%' justify='center'>
-        <Button className={style.btn} onClick={prevBtn}>&#10094;</Button>
+        <Show breakpoint='(min-width: 650px)'><Button className={style.btn} onClick={prevBtn}>&#10094;</Button></Show>
         <Flex justify='center' pt='1%'>
           {imgArr.map(({id}) => (
             <span key={id} onClick={()=>setSlide(id)} className={id === slide ? `${style.dot} ${style.active}` : style.dot}></span>
           ))}
         </Flex>
-        <Button className={style.btn} onClick={nextBtn}>&#10095;</Button>
+        <Show breakpoint='(min-width: 650px)'><Button className={style.btn} onClick={nextBtn}>&#10095;</Button></Show>
       </Flex>
     </Box>
   )

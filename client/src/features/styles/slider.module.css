@@ -37,7 +37,6 @@
     from {opacity: .4}
     to {opacity: 1}
 }
-
 @media(max-width: 650px){
     .display{
         display: block;
@@ -56,8 +55,5 @@
     }
     .active, .dot:hover {
         background-color: black;
-    }
-    .btn{
-        display: none;
     }
 }
