@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../Redux/apiSlice"
 
 const getLocalValue = (key, initValue = []) => {
 
@@ -16,10 +18,12 @@ const useLocalStorage = (key, initValue) => {
     const [value, setValue] = useState(() => {
         return getLocalValue(key, initValue)
     })
+    const dispatch = useDispatch()
 
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(value))
-    }, [key, value])
+        dispatch(addToCart(value))
+    }, [key, value, dispatch])
 
     return [value, setValue]
 }

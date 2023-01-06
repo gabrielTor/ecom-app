@@ -14,7 +14,8 @@ export const apiSlice = createSlice({
         success: null,
         disable: false,
         favorites: [],
-        chats: null
+        chats: null,
+        shoppingCart: []
     },
     reducers: {
         getProducts: (state, action) => {
@@ -70,6 +71,9 @@ export const apiSlice = createSlice({
         getChats: (state, action) => {
             state.chats = action.payload
         },
+        addToCart: (state, action) => {
+            state.shoppingCart = action.payload
+        }
     }
 })
     
@@ -88,7 +92,8 @@ export const {
     getByCateg,
     setFavorites,
     updateCurrUser,
-    getChats
+    getChats,
+    addToCart
 } = apiSlice.actions
 
 export default apiSlice.reducer
