@@ -15,7 +15,7 @@ export const apiSlice = createSlice({
         disable: false,
         favorites: [],
         chats: null,
-        shoppingCart: []
+        shoppingCart: JSON.parse(localStorage.getItem('cart'))
     },
     reducers: {
         getProducts: (state, action) => {
