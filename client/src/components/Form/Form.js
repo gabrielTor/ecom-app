@@ -78,28 +78,20 @@ function Form() {
             </Button>
           </Center>
       )}
-      <Stack pt="8" pb="12" bg='gray.300'
-      justify="space-evenly"
-      direction={{
-        base: 'column-reverse',
-        md: 'row',
-      }}
-      align="center"
-    >
-      <Text fontSize="sm" color="subtle">
-        &copy; 2022 Gabriel Torres, Inc. All rights reserved.
-      </Text>
-      <ButtonGroup variant="ghost">
-        <IconButton
-          as="a"
-          href="https://www.linkedin.com/in/dario-gabriel-torres-576a3561"
-          aria-label="LinkedIn"
-          icon={<FaLinkedin fontSize="1.25rem" />}
-        />
-        <IconButton as="a" href="https://github.com/gabrielTor" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
-        <IconButton as="a" href="https://www.facebook.com/nmz4ygabriel" aria-label="Facebook" icon={<FaFacebook fontSize="1.25rem" />} />
-      </ButtonGroup>
-    </Stack>
+        <Stack py='8' justify="space-evenly" align="center" bg='gray.300'
+          direction={{ base: 'column-reverse', md: 'row' }}>
+          <Text fontSize="sm">
+            &copy; 2022 Gabriel Torres, Inc. All rights reserved.
+          </Text>
+          <ButtonGroup variant="ghost">
+            <IconButton as="a" href="https://www.linkedin.com/in/dario-gabriel-torres-576a3561" aria-label="LinkedIn" 
+              icon={<FaLinkedin fontSize="1.25rem" color='#0077b5' />}/>
+            <IconButton as="a" href="https://github.com/gabrielTor" aria-label="GitHub" 
+              icon={<FaGithub fontSize="1.25rem" />} />
+            <IconButton as="a" href="https://www.facebook.com/nmz4ygabriel" aria-label="Facebook" 
+              icon={<FaFacebook fontSize="1.25rem" color='#4267B2' />} />
+          </ButtonGroup>
+      </Stack>
     </Box>
   )
 }

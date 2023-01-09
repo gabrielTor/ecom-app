@@ -22,7 +22,7 @@ const useLocalStorage = (key, initValue) => {
 
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(value))
-        dispatch(addToCart(value))
+        if(key === 'cart') dispatch(addToCart(value))
     }, [key, value, dispatch])
 
     return [value, setValue]
