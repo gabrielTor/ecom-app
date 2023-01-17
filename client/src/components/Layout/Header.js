@@ -10,9 +10,9 @@ import { useSelector } from 'react-redux'
 
 export default function Header() {
 
-    const value = useSelector(state => state.api.shoppingCart.length)
-    const {user} = useAuth0()
-  
+    const value = useSelector(state => state.api.shoppingCart?.length)
+    const { user } = useAuth0()
+
     return (
         <Flex w='100%' h='90' align='center' bg='#32CD32' justify='space-around'>
             <Show breakpoint='(min-width: 750px)'>
@@ -22,25 +22,25 @@ export default function Header() {
             </Show>
             <Show breakpoint='(min-width: 820px)'>
                 <Box w='fit-content'>
-                    <CategMenu/>
+                    <CategMenu />
                 </Box>
             </Show>
 
             <Show breakpoint='(max-width: 750px)'>
-                <HamburgerMenu/>
+                <HamburgerMenu />
             </Show>
 
-            <Searchbar/>
+            <Searchbar />
 
-            <ProfileMenu/>
+            <ProfileMenu />
 
             <Show breakpoint='(min-width: 750px)'>
-                <Link href='/sell' style={{textDecoration: 'none'}}>
+                <Link href='/sell' style={{ textDecoration: 'none' }}>
                     <Button variant='outline'>+ Sell</Button>
                 </Link>
                 <Link href='/shoppingCart'>
                     <Button variant='outline'>
-                        <GiShoppingCart size={30}/>
+                        <GiShoppingCart size={30} />
                         {(!value && user) || !user ? null :
                             <Circle bg='red' position='absolute' top='25px' right='39px' size={26}>{value}</Circle>
                         }

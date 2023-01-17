@@ -1,42 +1,36 @@
 import { Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useRef } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 import { searchProducts } from '../../../Redux/productActions'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Searchbar() {
-  
-    const [search, setSearch] = useState('')
+
+    const search = useRef('')
     const dispatch = useDispatch()
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
 
-    const handleOnSearch = (event) => {
-        setSearch(event.target.value)
-    }
     const handleSubmit = (event) => {
         event.preventDefault()
-        if(pathname !== '/'){
+        if (pathname !== '/') {
             navigate('/')
-            window.sessionStorage.setItem('searchItem', search)
-            return setSearch('')
+            window.sessionStorage.setItem('searchItem', search.current.value)
         }
-        dispatch(searchProducts(search))
-        setSearch('')
+        dispatch(searchProducts(search.current.value))
     }
 
     return (
         <Flex w={['65%', '60%', '40%']}>
             <InputGroup>
                 <Input
-                type="search"
-                placeholder="Search product, brand or more..."
-                value={search}
-                onChange={(e) => handleOnSearch(e)}
-                bg='white'
+                    ref={search}
+                    type="search"
+                    placeholder="Search product, brand or more..."
+                    bg='white'
                 />
-                <InputRightElement children={<Button onClick={handleSubmit}><SearchIcon/></Button>}/>
+                <InputRightElement children={<Button onClick={handleSubmit}><SearchIcon /></Button>} />
             </InputGroup>
         </Flex>
     )
