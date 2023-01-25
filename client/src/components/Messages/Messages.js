@@ -12,8 +12,8 @@ const socket = io.connect('https://websocket-server-mxn0.onrender.com')
 // const socket = io.connect('http://localhost:3002')
 
 function Messages() {
-  
-  const {user} = useAuth0()
+
+  const { user } = useAuth0()
   const [message, setMessage] = useState('')
   const [chat, setChat] = useState([])
   const [typing, setTyping] = useState('')
@@ -23,16 +23,16 @@ function Messages() {
   socket.emit("join_room", value)
   useFetch(userChats, userConnected?._id)
 
-  useEffect(()=>{
-    if(chats){
+  useEffect(() => {
+    if (chats) {
       let currentChat = chats.find(texts => texts.chat._id === value)
       setChat(currentChat?.chat?.messages)
     }
-  },[chats, value])
+  }, [chats, value])
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setChat((prev)=>[...prev, {text: data.text, currentUser: data.currentUser}])
+      setChat((prev) => [...prev, { text: data.text, currentUser: data.currentUser }])
     })
     socket.on('display', (data) => {
       setTyping(data)
@@ -40,34 +40,34 @@ function Messages() {
   }, [])
 
   const handleSend = () => {
-    if(!message) return
-    socket.emit('send_message', {text: message, currentUser: user.email, room: value})
-    socket.emit('typing', {typing: '', room: value})
-    setChat((prev)=>[...prev, {text: message, currentUser: user.email}])
+    if (!message) return
+    socket.emit('send_message', { text: message, currentUser: user.email, room: value })
+    socket.emit('typing', { typing: '', room: value })
+    setChat((prev) => [...prev, { text: message, currentUser: user.email }])
     setMessage('')
   }
   const handleTyping = (event) => {
     let input = event.target.value
     setMessage(input)
     input !== '' ?
-    socket.emit('typing', {typing: 'typing...', room: value}) :
-    socket.emit('typing', {typing: '', room: value})
+      socket.emit('typing', { typing: 'typing...', room: value }) :
+      socket.emit('typing', { typing: '', room: value })
   }
 
   return (
     <VStack mt='3%' h='85vh'>
       <Center w='100%'>
-        <Box bg='white' w={['fit-content', '20%']} h='23em' 
+        <Box bg='white' w={['fit-content', '20%']} h='23em'
           mr='4px' rounded='base' overflowY='scroll'>
           {
-            chats?.map(({product, chat}) => (
+            chats?.map(({ product, chat }) => (
               <Box key={chat._id} bg={value === chat._id ? 'blue.300' : 'blue.100'} mb={['12%', '4%']}
-                onClick={()=>setValue(chat._id)}
+                onClick={() => setValue(chat._id)}
                 cursor='pointer'>
                 <Flex>
-                  <Avatar size='sm' src={product.image[0].url} name={product.title}/>
+                  <Avatar size='sm' src={product?.image[0]?.url} name={product?.title} />
                   <Show breakpoint='(min-width: 500px)'>
-                    <Heading m='auto' size='xs' noOfLines={2}>{product.title}</Heading>
+                    <Heading m='auto' size='xs' noOfLines={2}>{product?.title}</Heading>
                   </Show>
                 </Flex>
               </Box>
@@ -75,11 +75,11 @@ function Messages() {
           }
         </Box>
         <Box w={['90%', '80%', '60%']}>
-        <Chat chat={chat} user={user.email} typing={typing?.typing}/>
-        <Center mt='7px'>
-          <Input value={message} bg='white' placeholder='message' onChange={handleTyping}/>
-          <Button bg='#32CD32' ml='7px' onClick={handleSend}>Send</Button>
-        </Center>
+          <Chat chat={chat} user={user.email} typing={typing?.typing} />
+          <Center mt='7px'>
+            <Input value={message} bg='white' placeholder='message' onChange={handleTyping} />
+            <Button bg='#32CD32' ml='7px' onClick={handleSend}>Send</Button>
+          </Center>
         </Box>
       </Center>
     </VStack>
