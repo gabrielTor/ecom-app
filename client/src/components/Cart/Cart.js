@@ -1,26 +1,31 @@
-import { Box, Tabs, TabList, TabPanels, Tab, TabPanel,
+import axios from 'axios'
+import {
+    Box, Tabs, TabList, TabPanels, Tab, TabPanel,
     Heading, VStack, Text, Flex, Divider,
-    IconButton, Button, Center 
+    IconButton, Button, Center
 } from '@chakra-ui/react'
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 import useLocalStorage from '../../Hooks/useLocalStorage'
-import {DeleteIcon} from '@chakra-ui/icons'
+import { DeleteIcon } from '@chakra-ui/icons'
 // import WishList from '../Profile/features/WishList'
 
 
 function Cart() {
 
     const [value, setValue] = useLocalStorage('cart')
-    const priceValues = value.length ? value.map(({price, amount}) => +price * amount) : null
+    const priceValues = value.length ? value.map(({ price, amount }) => +price * amount) : null
     const totalPrice = priceValues ? priceValues.reduce((total, price) => total + price) : 0
 
     const handleDelete = (title) => {
         setValue(prev => prev.filter(item => item.title !== title))
     }
+    const handleMercadoPago = async () => {
+        await axios.post(process.env.REACT_APP_GABR + 'mercado-pago')
+    }
 
-  return (
+    return (
         <VStack w='100%' justify='center'>
-            <Box w={['100%', '95%']} bg={['', 'white']} h={value.length > 5 ? 'fit-content' : '25em'} 
+            <Box w={['100%', '95%']} bg={['', 'white']} h={value.length > 5 ? 'fit-content' : '25em'}
                 m='2.5% 2% 5%' borderRadius='md' boxShadow={['', 'base']} textAlign={value.length ? '' : 'center'}>
                 <Tabs>
                     <TabList>
@@ -30,28 +35,29 @@ function Cart() {
                     <TabPanels>
                         <TabPanel>
                             {
-                            value.length ?
-                            <>{
-                            value.map(({title, price, amount})=>(
-                                <Flex key={title} w='100%' justify='space-between'>
-                                    <Flex>
-                                        <Text fontSize='lg'>{amount}</Text>
-                                        <IconButton m={['0', '0 20px']} onClick={()=>handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon/>}/>
-                                        <Text noOfLines={1} m='0.5%'>{title}</Text>
-                                    </Flex>
-                                    <Flex>
-                                        <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
-                                    </Flex>
-                                </Flex>
-                            ))}
-                            <Divider/>
-                            <Flex justify='space-between' m='1%'>
-                                <Heading size='lg'>Total:</Heading>
-                                <Heading size='lg'>${totalPrice}</Heading>
-                            </Flex>
-                            <Center><Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button></Center>
-                            </>:
-                            <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
+                                value.length ?
+                                    <>{
+                                        value.map(({ title, price, amount }) => (
+                                            <Flex key={title} w='100%' justify='space-between'>
+                                                <Flex>
+                                                    <Text fontSize='lg'>{amount}</Text>
+                                                    <IconButton m={['0', '0 20px']} onClick={() => handleDelete(title)} variant='ghost' size='sm' icon={<DeleteIcon />} />
+                                                    <Text noOfLines={1} m='0.5%'>{title}</Text>
+                                                </Flex>
+                                                <Flex>
+                                                    <Text fontSize='lg' m='0.5%'>${amount * price}</Text>
+                                                </Flex>
+                                            </Flex>
+                                        ))}
+                                        <Divider />
+                                        <Flex justify='space-between' m='1%'>
+                                            <Heading size='lg'>Total:</Heading>
+                                            <Heading size='lg'>${totalPrice}</Heading>
+                                        </Flex>
+                                        <Center><Button bg='#32CD32' mt={['20%', '5%']}
+                                            onClick={handleMercadoPago}>Continue</Button></Center>
+                                    </> :
+                                    <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
                             }
                         </TabPanel>
                         <TabPanel>
