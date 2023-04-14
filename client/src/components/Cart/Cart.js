@@ -15,7 +15,7 @@ initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 
 const handleMercadoPago = async () => {
     const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-    return res
+    return res.json()
 }
 
 function Cart() {
@@ -27,7 +27,10 @@ function Cart() {
     const handleDelete = (title) => {
         setValue(prev => prev.filter(item => item.title !== title))
     }
-    useEffect(() => handleMercadoPago.then(res => setMp(res.json())), [])
+    useEffect(() => {
+        const fun = () => handleMercadoPago.then(res => setMp(res))
+        fun()
+    }, [])
 
     return (
         <VStack w='100%' justify='center'>
