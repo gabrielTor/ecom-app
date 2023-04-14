@@ -23,6 +23,6 @@ router.put('/addFavor', userController.addToFavorites)
 router.get('/getChats', chatController.getChats)
 router.post('/chat', chatController.newChat)
 
-router.post('mercado-pago', paymentController.mcPayment)
+router.post('/mercado-pago', paymentController.mcPayment)
 
 module.exports = router;

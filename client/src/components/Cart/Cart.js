@@ -7,18 +7,19 @@ import {
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import { DeleteIcon } from '@chakra-ui/icons'
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { useEffect } from 'react'
-initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
+// initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 // import WishList from '../Profile/features/WishList'
 
 const handleMercadoPago = async () => {
-    const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-    return res
+    // const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+    // return res
+    await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
 }
 
 function Cart() {
-    const [mp, setMp] = useState('')
+    // const [mp, setMp] = useState('')
     const [value, setValue] = useLocalStorage('cart')
     const priceValues = value.length ? value.map(({ price, amount }) => +price * amount) : null
     const totalPrice = priceValues ? priceValues.reduce((total, price) => total + price) : 0
@@ -26,7 +27,7 @@ function Cart() {
     const handleDelete = (title) => {
         setValue(prev => prev.filter(item => item.title !== title))
     }
-    useEffect(() => handleMercadoPago.then(res => setMp(res.json())), [])
+    // useEffect(() => handleMercadoPago.then(res => setMp(res.json())), [])
 
     return (
         <VStack w='100%' justify='center'>
@@ -61,7 +62,7 @@ function Cart() {
                                         </Flex>
                                         <Center><Button bg='#32CD32' mt={['20%', '5%']}
                                             onClick={handleMercadoPago}>Continue</Button>
-                                            <Wallet initialization={{ preferenceId: mp }} />
+                                            {/* <Wallet initialization={{ preferenceId: mp }} /> */}
                                         </Center>
                                     </> :
                                     <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
