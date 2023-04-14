@@ -30,7 +30,7 @@ const mcPayment = async (req, res) => {
         res.redirect(preferenceId)
 
     } catch (error) {
-        console.log(error)
+        console.log(error.response)
     }
 }
 
