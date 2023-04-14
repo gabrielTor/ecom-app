@@ -27,7 +27,7 @@ const mcPayment = async (req, res) => {
         }
         const response = await mercadopago.preferences.create(preference);
         const preferenceId = response.body.init_point
-        res.json(preferenceId)
+        res.redirect(preferenceId)
 
     } catch (error) {
         console.log(error)
