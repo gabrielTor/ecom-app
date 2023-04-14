@@ -8,9 +8,9 @@ import { withAuthenticationRequired } from '@auth0/auth0-react'
 import useLocalStorage from '../../Hooks/useLocalStorage'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-initMercadoPago(process?.env?.REACT_APP_MERCADO_PAGO_KEY)
+initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 // import WishList from '../Profile/features/WishList'
 
 const handleMercadoPago = async () => {
