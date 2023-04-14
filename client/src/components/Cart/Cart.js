@@ -13,7 +13,8 @@ initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 // import WishList from '../Profile/features/WishList'
 
 const handleMercadoPago = async () => {
-    await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+    const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+    return res
 }
 
 function Cart() {
