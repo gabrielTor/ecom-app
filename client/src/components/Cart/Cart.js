@@ -2,7 +2,7 @@ import axios from 'axios'
 import {
     Box, Tabs, TabList, TabPanels, Tab, TabPanel,
     Heading, VStack, Text, Flex, Divider,
-    IconButton, Button, Center
+    IconButton, Center
 } from '@chakra-ui/react'
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 import useLocalStorage from '../../Hooks/useLocalStorage'
@@ -12,9 +12,13 @@ import { useEffect, useState } from 'react'
 
 initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 // import WishList from '../Profile/features/WishList'
+const handleMercadoPago = async (setMp) => {
+    const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+    setMp(res.data)
+}
 
 function Cart() {
-    const [mp, setMp] = useState('')
+    const [mp, setMp] = useState()
     const [value, setValue] = useLocalStorage('cart')
     const priceValues = value.length ? value.map(({ price, amount }) => +price * amount) : null
     const totalPrice = priceValues ? priceValues.reduce((total, price) => total + price) : 0
@@ -22,10 +26,7 @@ function Cart() {
     const handleDelete = (title) => {
         setValue(prev => prev.filter(item => item.title !== title))
     }
-    useEffect(async () => {
-        const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-        setMp(res.data)
-    }, [])
+    useEffect(() => handleMercadoPago(setMp), [])
 
     return (
         <VStack w='100%' justify='center'>
@@ -58,8 +59,9 @@ function Cart() {
                                             <Heading size='lg'>Total:</Heading>
                                             <Heading size='lg'>${totalPrice}</Heading>
                                         </Flex>
-                                        <Center><Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button>
-                                            <Wallet initialization={{ preferenceId: mp }} />
+                                        <Center mt={['20%', '5%']}>
+                                            {/* <Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button> */}
+                                            {mp ? <Wallet initialization={{ preferenceId: mp }} /> : null}
                                         </Center>
                                     </> :
                                     <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
