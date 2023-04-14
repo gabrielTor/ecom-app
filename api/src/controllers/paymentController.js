@@ -15,7 +15,7 @@ const mcPayment = async (req, res) => {
                     quantity: 1,
                     currency_id: 'ARS',
                     unit_price: 100,
-                    //picture_url: 'https://firebasestorage.googleapis.com/v0/b/carpentry-web-app.appspot.com/o/Gallery%2FPhoto%2024-04-15%2004%2000%2044%20p.m..jpg?alt=media&token=06de62ec-4042-47c2-b030-7512fd580fd1'
+                    picture_url: 'https://firebasestorage.googleapis.com/v0/b/carpentry-web-app.appspot.com/o/Gallery%2FPhoto%2024-04-15%2004%2000%2044%20p.m..jpg?alt=media&token=06de62ec-4042-47c2-b030-7512fd580fd1'
                 }
             ],
             back_urls: {
