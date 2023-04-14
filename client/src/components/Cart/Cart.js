@@ -22,12 +22,9 @@ function Cart() {
     const handleDelete = (title) => {
         setValue(prev => prev.filter(item => item.title !== title))
     }
-    useEffect(() => {
-        const handleMercadoPago = async () => {
-            const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-            setMp(res.data)
-        }
-        handleMercadoPago()
+    useEffect(async () => {
+        const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+        setMp(res.data)
     }, [])
 
     return (
