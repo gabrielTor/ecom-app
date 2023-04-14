@@ -20,7 +20,7 @@ function Cart() {
         setValue(prev => prev.filter(item => item.title !== title))
     }
     const handleMercadoPago = async () => {
-        await axios.post(process?.env?.REACT_APP_GABR + 'mercado-pago')
+        await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
     }
 
     return (
