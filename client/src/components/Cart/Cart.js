@@ -25,7 +25,7 @@ function Cart() {
     useEffect(() => {
         const handleMercadoPago = async () => {
             const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-            setMp(res.json())
+            setMp(res.data)
         }
         handleMercadoPago()
     }, [])
@@ -62,7 +62,7 @@ function Cart() {
                                             <Heading size='lg'>${totalPrice}</Heading>
                                         </Flex>
                                         <Center><Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button>
-                                            <Wallet initialization={{ preferenceId: mp || '' }} />
+                                            <Wallet initialization={{ preferenceId: mp }} />
                                         </Center>
                                     </> :
                                     <Heading size='sm' p={['0', '10em']} m={['50% 0', '0', '0', '0']}>Your Cart seems to be Empty</Heading>
