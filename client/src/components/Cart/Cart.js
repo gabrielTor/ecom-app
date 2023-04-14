@@ -13,11 +13,6 @@ import { useEffect, useState } from 'react'
 initMercadoPago(process.env.REACT_APP_MERCADO_PAGO_KEY)
 // import WishList from '../Profile/features/WishList'
 
-const handleMercadoPago = async () => {
-    const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
-    return res.json()
-}
-
 function Cart() {
     const [mp, setMp] = useState('')
     const [value, setValue] = useLocalStorage('cart')
@@ -28,8 +23,11 @@ function Cart() {
         setValue(prev => prev.filter(item => item.title !== title))
     }
     useEffect(() => {
-        const fun = () => handleMercadoPago.then(res => setMp(res))
-        fun()
+        const handleMercadoPago = async () => {
+            const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago')
+            setMp(res.json())
+        }
+        handleMercadoPago()
     }, [])
 
     return (
@@ -63,8 +61,7 @@ function Cart() {
                                             <Heading size='lg'>Total:</Heading>
                                             <Heading size='lg'>${totalPrice}</Heading>
                                         </Flex>
-                                        <Center><Button bg='#32CD32' mt={['20%', '5%']}
-                                            onClick={handleMercadoPago}>Continue</Button>
+                                        <Center><Button bg='#32CD32' mt={['20%', '5%']}>Continue</Button>
                                             <Wallet initialization={{ preferenceId: mp || '' }} />
                                         </Center>
                                     </> :
