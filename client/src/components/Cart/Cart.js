@@ -25,7 +25,7 @@ function Cart() {
     }
     useEffect(() => {
         const handleMercadoPago = async () => {
-            const res = await axios.post('http://localhost:3001/mercado-pago', value)
+            const res = await axios.post('https://ecom-app-phi.vercel.app/mercado-pago', value)
             setMp(res.data)
         }
         handleMercadoPago().then(() => setLoading(false))
