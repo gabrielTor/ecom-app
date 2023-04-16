@@ -8,16 +8,16 @@ mercadopago.configure({
 const mcPayment = async (req, res) => {
     try {
         const preference = {
-            items: [
+            items: req.body.map(({ title, price, amount, image }) => (
                 {
-                    title: 'Product name',
+                    title,
                     description: 'Product description',
-                    quantity: 1,
+                    quantity: Number(amount),
                     currency_id: 'ARS',
-                    unit_price: 100,
-                    picture_url: 'https://firebasestorage.googleapis.com/v0/b/carpentry-web-app.appspot.com/o/Gallery%2FPhoto%2024-04-15%2004%2000%2044%20p.m..jpg?alt=media&token=06de62ec-4042-47c2-b030-7512fd580fd1'
-                }
-            ],
+                    unit_price: price,
+                    picture_url: image
+                })
+            ),
             back_urls: {
                 "success": "https://ecom-app-phi.vercel.app",
                 "failure": "https://ecom-app-phi.vercel.app",
@@ -30,7 +30,7 @@ const mcPayment = async (req, res) => {
         res.json(preferenceId)
 
     } catch (error) {
-        console.log(error.response)
+        console.log(error)
     }
 }
 
