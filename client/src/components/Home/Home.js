@@ -6,21 +6,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getProductsPage, searchProducts } from '../../Redux/productActions'
 import ScrollToTop from '../../features/ScrollToTop'
 import Slider from '../../features/Slider'
-import useFetch from '../../Hooks/useFetch'
 
 export default function Home() {
-    
+
     const dispatch = useDispatch()
     const data = useSelector(state => state.api.products)
     const count = useSelector(state => state.api.count)
     const disable = useSelector(state => state.api.disable)
     const [page, setPage] = useState(1)
-    useFetch()
 
-    useEffect(()=>{
+    useEffect(() => {
         let search = window.sessionStorage.getItem('searchItem')
         let category = window.sessionStorage.getItem('category')
-        if(search || category){
+        if (search || category) {
             search && dispatch(searchProducts(search))
             category && dispatch(getCategories(category))
             window.sessionStorage.removeItem('searchItem')
@@ -37,25 +35,25 @@ export default function Home() {
 
     return (
         <Box h='fit-content' maxW='100%'>
-            {disable ? null : <Slider/>}
+            {disable ? null : <Slider />}
             <Box m='3%'>
                 {!disable && <Heading size='md' marginBottom='2%'>Most Recent</Heading>}
-                {!data?.length ? <Loading/> :
-                <Flex wrap='wrap' justify='space-around'>
-                    {data?.map(prod=>(
-                        <Card key={prod._id}
-                            id={prod._id}
-                            title={prod.title}
-                            price={prod.price}
-                            image={prod.image[0].url}/>
+                {!data?.length ? <Loading /> :
+                    <Flex wrap='wrap' justify='space-around'>
+                        {data?.map(prod => (
+                            <Card key={prod._id}
+                                id={prod._id}
+                                title={prod.title}
+                                price={prod.price}
+                                image={prod.image[0].url} />
                         ))}
-                </Flex>}
+                    </Flex>}
             </Box>
-            { disable ? null :        
-            <Center>
-                <Button m='7%' isDisabled={count === data?.length} onClick={handleLoad}>Load More</Button>
-            </Center> }
-            <ScrollToTop/>
+            {disable ? null :
+                <Center>
+                    <Button m='7%' isDisabled={count === data?.length} onClick={handleLoad}>Load More</Button>
+                </Center>}
+            <ScrollToTop />
         </Box>
     )
 }

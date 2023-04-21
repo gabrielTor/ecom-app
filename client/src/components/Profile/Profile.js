@@ -7,8 +7,6 @@ import EditProfile from "./features/EditProfile"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import MySellings from "./features/MySellings"
 import WishList from "./features/WishList"
-import useFetch from "../../Hooks/useFetch";
-
 
 function Profile() {
 
@@ -19,7 +17,6 @@ function Profile() {
     const [loaded, setLoaded] = useState(false)
     const userInfo = useSelector(state => state.api.user)
     const userListings = useSelector(state => state.api.userListings)
-    useFetch()
 
     useEffect(() => {
         if (userInfo) {
