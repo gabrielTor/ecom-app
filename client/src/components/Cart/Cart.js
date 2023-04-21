@@ -25,10 +25,16 @@ function Cart() {
     }
     useEffect(() => {
         const handleMercadoPago = async () => {
-            const res = await axios.post('https://ecom-app-phi.vercel.app/mercado-pago', value)
-            setMp(res.data)
+            try {
+                const res = await axios.post('https://ecom-rest-api.vercel.app/mercado-pago', value)
+                setMp(res.data)
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setLoading(false)
+            }
         }
-        handleMercadoPago().then(() => setLoading(false))
+        handleMercadoPago()
     }, [value])
 
     return (
